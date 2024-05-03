@@ -86,14 +86,14 @@ const gamesData = [
         previewUrl: '/',
     },
     
-]
+];
 
 export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);
-    }
+    };
 
     const fiteredGames = gamesData.filter((game)=>
         game.tag.includes(tag)
@@ -101,10 +101,10 @@ export const GamesSection = () => {
 
     return (
         <>
-            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-10'>
+            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                 Juegos
             </h2>
-            <div className='text-white flex flex-row justify-center items-center gap-2 p-6'>
+            <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
                 <GamesTags
                     onClick={handdleTagChange}
                     name='Todos'
