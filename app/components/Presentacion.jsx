@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
+import Link from 'next/link';
 
 const Presentacion = () => {
     return (
@@ -38,9 +39,11 @@ const Presentacion = () => {
                         facere beatae accusantium aliquid eos?
                     </p>
                     <div>
+                        
                         <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'>
-                            Iniciar sesión
+                        <Link href={'/login'}> Iniciar sesión</Link>
                         </button>
+                        
                         <button className='px-6 py-3 w-full sm:w-fit bg-trasnparent rounded-full hover:bg-slate-800 text-white border border-white mt-3'>
                             Registrate
                         </button>
