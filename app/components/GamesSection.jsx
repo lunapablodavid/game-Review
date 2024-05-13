@@ -45,7 +45,7 @@ const gamesData = [
         title: 'Doom: Eternal',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
         image: '/images/juegos/doom_eternal.png',
-        tag: ['Todos', 'FPS' ],
+        tag: ['Todos', 'FPS'],
         gameUrl: '/',
         previewUrl: '/',
     },
@@ -85,19 +85,86 @@ const gamesData = [
         gameUrl: '/',
         previewUrl: '/',
     },
-    
+    ,
+    {
+        id: 10,
+        title: 'GTA V',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/gtav.png',
+        tag: ['Todos', 'Autos', 'Accion'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 11,
+        title: 'FallOut 76',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/fallout76.png',
+        tag: ['Todos', 'RPG', 'Online'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 12,
+        title: 'Doom: Eternal',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/doom_eternal.png',
+        tag: ['Todos', 'FPS'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 13,
+        title: 'Dead Cells',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/dead_cells.png',
+        tag: ['Todos', 'Plataforma', 'Aventura'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 14,
+        title: 'The last of us 2',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/tlou2.png',
+        tag: ['Todos', 'Accion'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 15,
+        title: 'Call of Duty: Modern Warfare 3 Remake',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/cod3rm.png',
+        tag: ['Todos', 'FPS', 'Online'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+    {
+        id: 16,
+        title: 'Dead Island 2',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+        image: '/images/juegos/di2.png',
+        tag: ['Todos', 'FPS', 'Survival'],
+        gameUrl: '/',
+        previewUrl: '/',
+    },
+
 ];
 
 export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
+    const [expanded, setExpanded] = useState(false);
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);
     };
 
-    const fiteredGames = gamesData.filter((game)=>
+    const fiteredGames = gamesData.filter((game) =>
         game.tag.includes(tag)
     );
+    const displayedGames = expanded ? fiteredGames : fiteredGames.slice(0, 9);
+
 
     return (
         <>
@@ -151,10 +218,10 @@ export const GamesSection = () => {
                     isSelected={tag === 'RPG'}
                 />
 
-                
+
             </div>
             <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
-                {fiteredGames.map((game) => (
+                {displayedGames.map((game) => (
                     <GamesCard
                         key={game.id}
                         title={game.title}
@@ -165,6 +232,22 @@ export const GamesSection = () => {
                     />
                 ))}
             </div>
+                {!expanded && (
+                    <div className='flex justify-center mt-10'>
+                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                            onClick={() => setExpanded(true)}>
+                            Ver más
+                        </button>
+                    </div>
+                )}
+                {expanded && (
+                    <div className='flex justify-center mt-10'>
+                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                            onClick={() => setExpanded(false)}>
+                            Ver menos
+                        </button>
+                    </div>
+                )}
         </>
     )
 }
