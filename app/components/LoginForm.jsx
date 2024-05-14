@@ -1,14 +1,11 @@
 "use client"
 
-import React, { useState } from 'react';
-import { AuthContext } from '../context/authContext';
-import { useContext } from "react";
+import { useState } from 'react';
 
 const LoginForm = () => {
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  //const {isLoggin} = useContext(AuthContext)
 
   const handleSubmit = async (event) => {
     event.preventDefault()

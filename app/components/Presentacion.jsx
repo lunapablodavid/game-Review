@@ -34,9 +34,9 @@ const Presentacion = () => {
                         />
                     </span>
                     <p className='text-[#adb7be] text-base sm:text-lg mb-6 lg:text-xl'>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae sint, neque, nam ipsum
-                        itaque ea ducimus corrupti debitis illum quasi quo, repellat rerum cumque deserunt
-                        facere beatae accusantium aliquid eos?
+                    ¡Bienvenido a Player Review! Tu destino definitivo para reseñas de videojuegos.
+                    Sumérgete en nuestro mundo de análisis expertos y descubre los mejores juegos
+                    para tu próxima aventura virtual.
                     </p>
                     <div>
                         
