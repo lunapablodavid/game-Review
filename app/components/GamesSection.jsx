@@ -165,7 +165,6 @@ export const GamesSection = () => {
     );
     const displayedGames = expanded ? fiteredGames : fiteredGames.slice(0, 9);
 
-
     return (
         <>
             <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
@@ -232,22 +231,22 @@ export const GamesSection = () => {
                     />
                 ))}
             </div>
-                {!expanded && (
-                    <div className='flex justify-center mt-10'>
-                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
-                            onClick={() => setExpanded(true)}>
-                            Ver más
-                        </button>
-                    </div>
-                )}
-                {expanded && (
-                    <div className='flex justify-center mt-10'>
-                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
-                            onClick={() => setExpanded(false)}>
-                            Ver menos
-                        </button>
-                    </div>
-                )}
+            {!expanded && (
+                <div className='flex justify-center mt-10'>
+                    <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                        onClick={() => setExpanded(true)}>
+                        Ver más
+                    </button>
+                </div>
+            )}
+            {expanded && (
+                <div className='flex justify-center mt-10'>
+                    <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                        onClick={() => setExpanded(false)}>
+                        Ver menos
+                    </button>
+                </div>
+            )}
         </>
     )
 }
