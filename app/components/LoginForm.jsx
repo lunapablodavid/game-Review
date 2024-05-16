@@ -1,14 +1,11 @@
 "use client"
 
-import React, { useState } from 'react';
-import { AuthContext } from '../context/authContext';
-import { useContext } from "react";
+import React, { useState, useEffect } from 'react';
 
 const LoginForm = () => {
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  //const {isLoggin} = useContext(AuthContext)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -23,8 +20,15 @@ const LoginForm = () => {
 
     const data = await res.json()
 
-    //Guardamos el token para su posterior uso en otras request!
-    localStorage.setItem('token', data.access_token)
+  //Guardamos el token para su posterior uso en otras request!
+    const userData = {
+      username,
+      isLogged:true,
+      token: data.access_token
+    }
+    const objJson= JSON.stringify(userData)
+    localStorage.setItem('data', objJson)
+
     window.location.href = '/';
   }
 
