@@ -55,7 +55,8 @@ const Presentacion = () => {
                             </button>
 
                             <button className='px-6 py-3 w-full sm:w-fit bg-trasnparent rounded-full hover:bg-slate-800 text-white border border-white mt-3'>
-                                Registrate
+                            <Link href={'/register'}> Registrate</Link>
+
                             </button>
                         </div> || <div className='col-span-5 place-self-center mt-4 lg:mt-0'><h1 className='text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold'>
                             <span className='text-transparent bg-clip-text bg-gradient-to-br from-yellow-500 via-red-500 to-green-300'>
