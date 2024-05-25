@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
+import GamesInfo from './GamesInfo';
 
 const gamesData = [
     {
@@ -156,6 +157,7 @@ export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
     const [expanded, setExpanded] = useState(false);
     const [sessionData, setData] = useState({});
+    const [selectedGame, setSelectedGame] = useState(null);
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('data'));
@@ -166,105 +168,126 @@ export const GamesSection = () => {
         setTag(newTag);
     };
 
-    const fiteredGames = gamesData.filter((game) =>
+    const handleGameCardClick = (game) => {
+        setSelectedGame(game);
+      };
+    
+      const handleCloseModal = () => {
+        setSelectedGame(null);
+      };
+
+    const filteredGames = gamesData.filter((game) =>
         game.tag.includes(tag)
     );
-    const displayedGames = expanded ? fiteredGames : fiteredGames.slice(0, 9);
-
+    const displayedGames = expanded ? filteredGames : filteredGames.slice(0, 9);
 
     return (
         <>
-        {sessionData.isLogged &&
-            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
-                Juegos
-            </h2>}
+            {sessionData.isLogged &&
+                <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
+                    Juegos
+                </h2>}
             <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Todos'
-                    isSelected={tag === 'Todos'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Todos'
+                        isSelected={tag === 'Todos'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Accion'
-                    isSelected={tag === 'Accion'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Accion'
+                        isSelected={tag === 'Accion'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Autos'
-                    isSelected={tag === 'Autos'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Autos'
+                        isSelected={tag === 'Autos'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Aventura'
-                    isSelected={tag === 'Aventura'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Aventura'
+                        isSelected={tag === 'Aventura'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='FPS'
-                    isSelected={tag === 'FPS'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='FPS'
+                        isSelected={tag === 'FPS'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='MMO'
-                    isSelected={tag === 'MMO'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='MMO'
+                        isSelected={tag === 'MMO'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Online'
-                    isSelected={tag === 'Online'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Online'
+                        isSelected={tag === 'Online'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='Survival'
-                    isSelected={tag === 'Survival'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='Survival'
+                        isSelected={tag === 'Survival'}
+                    />}
                 {sessionData.isLogged &&
-                <GamesTags
-                    onClick={handdleTagChange}
-                    name='RPG'
-                    isSelected={tag === 'RPG'}
-                />}
+                    <GamesTags
+                        onClick={handdleTagChange}
+                        name='RPG'
+                        isSelected={tag === 'RPG'}
+                    />}
 
 
             </div>
             {sessionData.isLogged &&
-            <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
-                {displayedGames.map((game) => (
-                    <GamesCard
-                        key={game.id}
-                        title={game.title}
-                        description={game.description}
-                        imgUrl={game.image}
-                        gameUrl={game.gameUrl}
-                        previewUrl={game.previewUrl}
-                    />
-                ))}
-            </div>}
-                {sessionData.isLogged && !expanded && (
-                    <div className='flex justify-center mt-10'>
-                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
-                            onClick={() => setExpanded(true)}>
-                            Ver más
-                        </button>
-                    </div>
-                )}
-                {sessionData.isLogged && expanded && (
-                    <div className='flex justify-center mt-10'>
-                        <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
-                            onClick={() => setExpanded(false)}>
-                            Ver menos
-                        </button>
-                    </div>
-                )}
+                <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
+                    {displayedGames.map((game) => (
+                        <GamesCard
+                            onEyeClick={() => handleGameCardClick(game)}
+                            key={game.id}
+                            title={game.title}
+                            description={game.description}
+                            imgUrl={game.image}
+                            gameUrl={game.gameUrl}
+                            previewUrl={game.previewUrl}
+                            />
+                    ))}
+                </div>}
+                
+                {sessionData.isLogged && selectedGame && (
+        <div>
+        <GamesInfo
+          title={selectedGame.title}
+          description={selectedGame.description}
+          imgUrl={selectedGame.image}
+          onClose={handleCloseModal}
+        />
+        </div>
+      )}          
+
+            {sessionData.isLogged && !expanded && (
+                <div className='flex justify-center mt-10'>
+                    <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                        onClick={() => setExpanded(true)}>
+                        Ver más
+                    </button>
+
+                </div>
+            )}
+            {sessionData.isLogged && expanded && (
+                <div className='flex justify-center mt-10'>
+                    <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                        onClick={() => setExpanded(false)}>
+                        Ver menos
+                    </button>
+                </div>
+            )}
         </>
     )
 }

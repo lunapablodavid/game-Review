@@ -25,7 +25,7 @@ const Presentacion = () => {
                             </span>
                         </h1>
                     </span>
-                    <span className='text-white mb-4 text-2xl sm:text-5xl lg:text-6xl font-extrabold'>
+                    <span className='text-white mb-8 text-1xl sm:text-3xl lg:text-6xl font-extrabold'>
                         <TypeAnimation
                             sequence={[
                                 'Juegos',
