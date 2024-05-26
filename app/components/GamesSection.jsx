@@ -187,7 +187,7 @@ export const GamesSection = () => {
                 <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                     Juegos
                 </h2>}
-            <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
+            <div className='text-white justify-center items-center grid md:grid-cols-9 gap-3 md:gap-4 p-4 mb-8'>
                 {sessionData.isLogged &&
                     <GamesTags
                         onClick={handdleTagChange}

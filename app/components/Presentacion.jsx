@@ -25,7 +25,7 @@ const Presentacion = () => {
                             </span>
                         </h1>
                     </span>
-                    <span className='text-white mb-8 text-1xl sm:text-3xl lg:text-6xl font-extrabold'>
+                    <span className='text-white mb-8 text-1xl sm:text-3xl lg:text-4xl font-extrabold'>
                         <TypeAnimation
                             sequence={[
                                 'Juegos',
@@ -42,7 +42,7 @@ const Presentacion = () => {
                             repeat={Infinity}
                         />
                     </span>
-                    <p className='text-[#adb7be] text-base sm:text-lg mb-6 lg:text-xl'>
+                    <p className='text-[#adb7be] text-base sm:text-lg mb-6 mt-4 lg:text-xl'>
                         ¡Bienvenidos a PlayerReview! Aquí encontrarás las mejores reseñas de videojuegos,
                         hechas por y para gamers. Explora análisis detallados, descubre nuevos títulos y
                         comparte tus opiniones. ¡Únete a nuestra comunidad y lleva tu experiencia de juego

@@ -2,6 +2,7 @@ import Presentacion from "./components/Presentacion";
 import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
 import { GamesSection } from "./components/GamesSection";
+import  Footer  from "./components/footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
               <Consolas />
               <GamesSection />
             </div>
+            <Footer/>
     </main>
   );
 }
