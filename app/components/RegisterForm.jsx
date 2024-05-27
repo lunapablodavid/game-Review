@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-
+      
       if (password !== confirmPassword) {
         return setError('Las contraseñas no coinciden.');
       }
@@ -26,7 +26,8 @@ const RegisterForm = () => {
       });
 
       if (!res.ok) {
-       return setError('Error al registrar el usuario.');
+        const err = await res.json()
+       return setError(err.message);
       }
 
 

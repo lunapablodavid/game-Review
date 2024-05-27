@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navlink from './Navlink';
-import { Bars3Icon, XMarkIcon, XmarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import { MenuOverlay } from './MenuOverlay';
 import Image from 'next/image';
 
@@ -22,12 +22,19 @@ const navlinks = [
     },
     {
         title: 'About us',
-        path: '#about'
+        path: '/login'
     }
 ]
 
 export const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
+    const [sessionData, setData] = useState({});
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('data'));
+        if (userData) setData(userData)
+    }, []);
+
     return (
         <nav className='fixed top-0 right-0 left-0 z-10 bg-[#121212] bg-opacity-95'>
             <div className='flex flex-wrap items-center justify-between mx-auto px-8'>
@@ -54,6 +61,7 @@ export const Navbar = () => {
                 <div className='menu hidden md:block md:w-auto' id='navbar'>
                     <ul className='flex p-2 mb-5 md:p-0 md:flex-row md:space-x-8 mt-5'>
                         {
+                            sessionData.isLogged &&
                             navlinks.map((link, index) => (
                                 <li key={index}>
                                     <Navlink href={link.path} title={link.title} />

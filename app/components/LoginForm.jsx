@@ -19,7 +19,10 @@ const LoginForm = () => {
         },
         body: JSON.stringify({ username, password })
       })
-      if (!res.ok) return setError('Usuario y/o contraseña incorrecto.')
+      if (!res.ok){
+        const err = await res.json()
+        return setError(err.message)
+      } 
 
       const data = await res.json()
 
