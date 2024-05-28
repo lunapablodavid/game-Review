@@ -1,7 +1,7 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 
 const Comments = ({ gameId }) => {
-    const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [sessionData, setSessionData] = useState({});
@@ -19,9 +19,15 @@ const Comments = ({ gameId }) => {
                     headers: { 'Authorization': `Bearer ${sessionData.token}` },
                 });
                 const data = await response.json();
-                setComments(data);
+                // Asegúrate de que data es un array
+                if (Array.isArray(data)) {
+                    setComments(data);
+                } else {
+                    setComments([]);
+                }
             } catch (error) {
                 console.error("Error al cargar los comentarios:", error);
+                setComments([]);
             }
         };
 
@@ -30,11 +36,11 @@ const Comments = ({ gameId }) => {
 
     const handlePostComment = async () => {
         if (newComment.trim()) {
-            const newCommentObject = { text: newComment, id: comments.length + 1, gameId };
+            const newCommentObject = { text: newComment, gameId };
             setComments([...comments, newCommentObject]);
             setNewComment("");
             try {
-                await fetch('http://localhost:3000/comments', {
+                const response = await fetch('http://localhost:3000/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -42,6 +48,9 @@ const Comments = ({ gameId }) => {
                     },
                     body: JSON.stringify(newCommentObject),
                 });
+                if (!response.ok) {
+                    throw new Error("Error al postear el comentario");
+                }
             } catch (error) {
                 console.error("Error al postear el comentario:", error);
             }
