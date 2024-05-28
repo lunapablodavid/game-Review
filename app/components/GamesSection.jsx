@@ -263,6 +263,7 @@ export const GamesSection = () => {
                 {sessionData.isLogged && selectedGame && (
         <div>
         <GamesInfo
+          id={selectedGame.id}
           title={selectedGame.title}
           description={selectedGame.description}
           imgUrl={selectedGame.image}

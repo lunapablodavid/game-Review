@@ -10,6 +10,7 @@ const Presentacion = () => {
     const [sessionData, setData] = useState({});
 
     useEffect(() => {
+        
         const userData = JSON.parse(localStorage.getItem('data'));
         if (userData) setData(userData)
     }, []);
@@ -60,7 +61,7 @@ const Presentacion = () => {
                             </button>
                         </div> || <div className='col-span-5 place-self-center mt-4 lg:mt-0'><h1 className='text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold'>
                             <span className='text-transparent bg-clip-text bg-gradient-to-br from-yellow-500 via-red-500 to-green-300'>
-                                Hola {sessionData.username}, que bueno es verte por aqui!
+                                Hola {sessionData.name}, que bueno es verte por aqui!
                             </span>
                         </h1></div>
                     }

@@ -28,9 +28,12 @@ const LoginForm = () => {
 
       //Guardamos el token para su posterior uso en otras request!
       const userData = {
-        username,
-        isLogged: true,
-        token: data.access_token
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        rol: data.rol,
+        token: data.access_token,
+        isLogged: true
       }
       const objJson = JSON.stringify(userData)
       localStorage.setItem('data', objJson)

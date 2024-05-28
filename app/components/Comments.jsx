@@ -1,69 +1,23 @@
-"use client"
-/* const Comments = () => {
-    const [comment, setComment] = useState('');
-    const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState('');
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const res = await fetch("http://localhost:3000/comments/create", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ comment })
-        });
-        if (newComment.trim() !== '') {
-            setComments([...comments, newComment]);
-            setNewComment('');
-        }
-      } 
-
-      const handleChange = (event) => {
-        setNewComment(event.target.value);
-    };
-
-    return (
-        <div>
-            <h3 className="text-xl font-bold mb-2">Comentarios</h3>
-            <div className="text-black mb-4">
-               <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    value={newComment}
-                    onChange={handleChange}
-                    placeholder="Escribe tu comentario..."
-                    className="w-full px-3 py-2 border rounded-md"
-                ></input>
-                </form>
-            </div>
-            <button type='submit' className="px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white">
-                Publicar
-            </button>
- 
-             <div className=" text-white mt-4">
-                {comments.map((comment, index) => (
-                    <div key={index} className="border-b pb-2 mb-2">
-                        <p>{comment}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-export default Comments; */
 import React, { useState, useEffect } from 'react';
 
 const Comments = ({ gameId }) => {
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
+    const [sessionData, setSessionData] = useState({});
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('data'));
+        if (userData) setSessionData(userData);
+    }, []);
 
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/comments/create`);
+                const response = await fetch(`http://localhost:3000/comments/games/${gameId}`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${sessionData.token}` },
+                });
                 const data = await response.json();
                 setComments(data);
             } catch (error) {
@@ -72,18 +26,19 @@ const Comments = ({ gameId }) => {
         };
 
         fetchComments();
-    }, [gameId]);
+    }, [gameId, sessionData.token]);
 
     const handlePostComment = async () => {
         if (newComment.trim()) {
             const newCommentObject = { text: newComment, id: comments.length + 1, gameId };
             setComments([...comments, newCommentObject]);
-            setNewComment("");            
+            setNewComment("");
             try {
-                await fetch('/api/comments', {
+                await fetch('http://localhost:3000/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${sessionData.token}`
                     },
                     body: JSON.stringify(newCommentObject),
                 });
@@ -97,7 +52,7 @@ const Comments = ({ gameId }) => {
         <div>
             <h3 className="text-xl font-bold mb-2">Comentarios</h3>
             <div className="mb-4">
-                {comments.map(comment => (
+                {Array.isArray(comments) && comments.map(comment => (
                     <div key={comment.id} className="mb-2 p-2 border-b">
                         {comment.text}
                     </div>
