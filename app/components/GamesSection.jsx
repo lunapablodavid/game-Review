@@ -187,7 +187,7 @@ export const GamesSection = () => {
                 <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                     Juegos
                 </h2>}
-            <div className='text-white justify-center items-center grid md:grid-cols-9 gap-3 md:gap-4 p-4 mb-8'>
+            <div className='text-white justify-center items-center grid md:grid-cols-4 gap-3 md:gap-4 p-4 mb-8'>
                 {sessionData.isLogged &&
                     <GamesTags
                         onClick={handdleTagChange}
@@ -263,6 +263,7 @@ export const GamesSection = () => {
                 {sessionData.isLogged && selectedGame && (
         <div>
         <GamesInfo
+          id={selectedGame.id}
           title={selectedGame.title}
           description={selectedGame.description}
           imgUrl={selectedGame.image}
@@ -292,4 +293,4 @@ export const GamesSection = () => {
     )
 }
 
-export default GamesSection;
+export default GamesSection

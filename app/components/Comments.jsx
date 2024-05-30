@@ -4,11 +4,20 @@ import React, { useState, useEffect } from 'react';
 const Comments = ({ gameId }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
+    const [sessionData, setSessionData] = useState({});
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('data'));
+        if (userData) setSessionData(userData);
+    }, []);
 
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/comments?gameId=${gameId}`);
+                const response = await fetch(`http://localhost:3000/comments/games/${gameId}`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${sessionData.token}` },
+                });
                 const data = await response.json();
                 // Asegúrate de que data es un array
                 if (Array.isArray(data)) {
@@ -23,18 +32,19 @@ const Comments = ({ gameId }) => {
         };
 
         fetchComments();
-    }, [gameId]);
+    }, [gameId, sessionData.token]);
 
     const handlePostComment = async () => {
         if (newComment.trim()) {
             const newCommentObject = { text: newComment, gameId };
             setComments([...comments, newCommentObject]);
-            setNewComment("");            
+            setNewComment("");
             try {
                 const response = await fetch('http://localhost:3000/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${sessionData.token}`
                     },
                     body: JSON.stringify(newCommentObject),
                 });
@@ -51,7 +61,7 @@ const Comments = ({ gameId }) => {
         <div>
             <h3 className="text-xl font-bold mb-2">Comentarios</h3>
             <div className="mb-4">
-                {comments.map(comment => (
+                {Array.isArray(comments) && comments.map(comment => (
                     <div key={comment.id} className="mb-2 p-2 border-b">
                         {comment.text}
                     </div>
@@ -72,4 +82,3 @@ const Comments = ({ gameId }) => {
 };
 
 export default Comments;
-

@@ -10,11 +10,11 @@ import Image from 'next/image';
 const navlinks = [
     {
         title: 'Juegos',
-        path: '#juegos'
+        path: './GamesSection.jsx'
     },
     {
-        title: 'Genero',
-        path: '#genero'
+        title: 'Categorias',
+        path: './GamesSection.jsx'
     },
     {
         title: 'Comunidad',
@@ -31,7 +31,7 @@ export const Navbar = () => {
     return (
         <nav className='fixed top-0 right-0 left-0 z-10 bg-[#121212] bg-opacity-95'>
             <div className='flex flex-wrap items-center justify-between mx-auto px-8'>
-                <Link href={'/'} className='text-2xl md:text-xl text-white font-semibold mt-3 mb-3'>
+                <Link href={'/'} className='text-1lg md:text-lg text-white font-semibold mt-3 mb-3'>
                     <Image
                         src='/images/logo-nav.png'
                         alt='logo'

@@ -19,15 +19,21 @@ const LoginForm = () => {
         },
         body: JSON.stringify({ username, password })
       })
-      if (!res.ok) return setError('Usuario y/o contraseña incorrecto.')
+      if (!res.ok){
+        const err = await res.json()
+        return setError(err.message)
+      } 
 
       const data = await res.json()
 
       //Guardamos el token para su posterior uso en otras request!
       const userData = {
-        username,
-        isLogged: true,
-        token: data.access_token
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        rol: data.rol,
+        token: data.access_token,
+        isLogged: true
       }
       const objJson = JSON.stringify(userData)
       localStorage.setItem('data', objJson)
