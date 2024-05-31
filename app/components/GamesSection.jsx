@@ -181,7 +181,7 @@ export const GamesSection = () => {
         <>
             {sessionData.isLogged &&
                 <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
-                    Juegos
+                    Categorias y Juegos
                 </h2>}
             <div className='text-white justify-center items-center grid md:grid-cols-4 gap-3 md:gap-4 p-4 mb-8'>
                 {sessionData.isLogged &&

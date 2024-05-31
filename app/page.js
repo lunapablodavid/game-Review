@@ -11,9 +11,15 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-[#121212]">
         <Navbar />
         <div className="container mt-24 mx-auto px-12 py-4">
-          <Presentacion />
-          <Consolas />
-          <GamesSection />
+          <section id="presentacion">
+            <Presentacion />
+          </section>
+          <section id="consolas">
+            <Consolas />
+          </section>
+          <section id="games-section">
+            <GamesSection />
+          </section>
         </div>
         <Footer />
     </main>
