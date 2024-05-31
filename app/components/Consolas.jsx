@@ -1,7 +1,8 @@
 "use client";
-import React, { useEffect, useTransition, useState } from 'react';
+import React, { useContext, useTransition, useState } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
+import { SessionContext } from '../context/SessionContext';
 
 const tab_data = [{
     title: 'Portatiles',
@@ -44,12 +45,7 @@ export const Consolas = () => {
     const [isPending, startTransition] = useTransition();
 
     
-    const [sessionData, setData] = useState({});
-
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setData(userData)
-    }, []);
+    const { sessionData } = useContext(SessionContext);
 
     const handleTabChange = (id) => {
         startTransition(() => {

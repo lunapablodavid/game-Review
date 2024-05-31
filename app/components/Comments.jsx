@@ -1,15 +1,11 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { SessionContext } from '../context/SessionContext';
 
 const Comments = ({ gameId }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    const [sessionData, setSessionData] = useState({});
-
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setSessionData(userData);
-    }, []);
+    const { sessionData } = useContext(SessionContext);
 
     useEffect(() => {
         const fetchComments = async () => {

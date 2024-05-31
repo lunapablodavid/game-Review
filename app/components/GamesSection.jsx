@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
 import GamesInfo from './GamesInfo';
+import { SessionContext } from '../context/SessionContext';
 
 const gamesData = [
     {
@@ -156,13 +157,8 @@ const gamesData = [
 export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
     const [expanded, setExpanded] = useState(false);
-    const [sessionData, setData] = useState({});
+    const { sessionData } = useContext(SessionContext);
     const [selectedGame, setSelectedGame] = useState(null);
-
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setData(userData)
-    }, []);
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);

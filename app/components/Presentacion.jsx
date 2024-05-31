@@ -1,19 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
+import { SessionContext } from '../context/SessionContext';
 
 const Presentacion = () => {
 
-    const [sessionData, setData] = useState({});
-
-    useEffect(() => {
-        
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setData(userData)
-    }, []);
+    const { sessionData } = useContext(SessionContext);
 
     return (
         <section >
