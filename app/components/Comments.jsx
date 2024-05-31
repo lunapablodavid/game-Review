@@ -10,12 +10,11 @@ const Comments = ({ gameId }) => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/comments/games/${gameId}`, {
+                const response = await fetch(`http://localhost:3000/comments/${gameId}`, {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${sessionData.token}` },
                 });
                 const data = await response.json();
-                // Asegúrate de que data es un array
                 if (Array.isArray(data)) {
                     setComments(data);
                 } else {
@@ -36,7 +35,7 @@ const Comments = ({ gameId }) => {
             setComments([...comments, newCommentObject]);
             setNewComment("");
             try {
-                const response = await fetch('http://localhost:3000/comments', {
+                const response = await fetch(`http://localhost:3000/comments/${gameId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -55,6 +54,8 @@ const Comments = ({ gameId }) => {
 
     return (
         <div>
+            {sessionData.isLogged &&
+            <div>
             <h3 className="text-xl font-bold mb-2">Comentarios</h3>
             <div className="mb-4">
                 {Array.isArray(comments) && comments.map(comment => (
@@ -63,6 +64,9 @@ const Comments = ({ gameId }) => {
                     </div>
                 ))}
             </div>
+            </div>}
+            {sessionData.isLogged &&
+            <div>
             <input
                 type="text"
                 value={newComment}
@@ -73,6 +77,7 @@ const Comments = ({ gameId }) => {
             <button onClick={handlePostComment} className="mt-6 px-4 py-2 bg-blue-500 text-white rounded">
                 Postear
             </button>
+            </div>}
         </div>
     );
 };
