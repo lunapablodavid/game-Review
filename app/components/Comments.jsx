@@ -1,30 +1,23 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { useUser } from '../context/userContext';
 
 const Comments = ({ gameId }) => {
+    const {userData} = useUser();
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    const [sessionData, setSessionData] = useState({});
-
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setSessionData(userData);
-    }, []);
 
     useEffect(() => {
         const fetchComments = async () => {
             try {
                 const response = await fetch(`http://localhost:3000/comments/games/${gameId}`, {
                     method: 'GET',
-                    headers: { 'Authorization': `Bearer ${sessionData.token}` },
+                    headers: { 'Authorization': `Bearer ${userData.token}` },
                 });
                 const data = await response.json();
-                // Asegúrate de que data es un array
-                if (Array.isArray(data)) {
-                    setComments(data);
-                } else {
-                    setComments([]);
-                }
+
+                setComments(data);
+
             } catch (error) {
                 console.error("Error al cargar los comentarios:", error);
                 setComments([]);
@@ -32,19 +25,19 @@ const Comments = ({ gameId }) => {
         };
 
         fetchComments();
-    }, [gameId, sessionData.token]);
+    }, [gameId]);
 
     const handlePostComment = async () => {
         if (newComment.trim()) {
-            const newCommentObject = { text: newComment, gameId };
-            setComments([...comments, newCommentObject]);
+            const newCommentObject = { comment: newComment, userId:userData.id, videoGameId:gameId };
+            setComments([newCommentObject]);
             setNewComment("");
             try {
                 const response = await fetch('http://localhost:3000/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${sessionData.token}`
+                        'Authorization': `Bearer ${userData.token}`
                     },
                     body: JSON.stringify(newCommentObject),
                 });
@@ -63,7 +56,7 @@ const Comments = ({ gameId }) => {
             <div className="mb-4">
                 {Array.isArray(comments) && comments.map(comment => (
                     <div key={comment.id} className="mb-2 p-2 border-b">
-                        {comment.text}
+                        {comment.comment}
                     </div>
                 ))}
             </div>

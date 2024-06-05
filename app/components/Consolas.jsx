@@ -2,6 +2,7 @@
 import React, { useEffect, useTransition, useState } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
+import { useUser } from '../context/userContext';
 
 const tab_data = [{
     title: 'Portatiles',
@@ -42,15 +43,9 @@ const tab_data = [{
 export const Consolas = () => {
     const [tab, setTab] = useState("portatiles");
     const [isPending, startTransition] = useTransition();
-
+    const {userData} = useUser();
     
-    const [sessionData, setData] = useState({});
-
-    useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem('data'));
-        if (userData) setData(userData)
-    }, []);
-
+    
     const handleTabChange = (id) => {
         startTransition(() => {
             setTab(id);
@@ -59,7 +54,7 @@ export const Consolas = () => {
 
     return (
             <section className='text-white'>
-                {sessionData.isLogged &&
+                {userData.name &&
             
                 <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'>
                     <Image src='/images/consolas.jpg' alt='imagen cosolas' width={500} height={500} />
