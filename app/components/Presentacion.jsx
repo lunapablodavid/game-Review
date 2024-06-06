@@ -4,11 +4,11 @@ import React, { useContext} from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
-import { SessionContext } from '../context/SessionContext';
+import { useUser } from '../context/userContext';
 
 const Presentacion = () => {
 
-    const { sessionData } = useContext(SessionContext);
+const {userData} = useUser();
 
     return (
         <section >
@@ -21,7 +21,7 @@ const Presentacion = () => {
                             </span>
                         </h1>
                     </span>
-                    <span className='text-white mb-8 text-2xl sm:text-4xl lg:text-6xl font-extrabold'>
+                    <span className='text-white mb-8 text-4xl sm:text-3xl lg:text-5xl font-extrabold'>
                         <TypeAnimation
                             sequence={[
                                 'Juegos',
@@ -39,12 +39,12 @@ const Presentacion = () => {
                         />
                     </span>
                     <p className='text-[#adb7be] text-base sm:text-lg mb-6 mt-4 lg:text-xl'>
-                        ¡Bienvenidos a PlayerReview! Aquí encontrarás las mejores reseñas de videojuegos,
+                        ¡Bienvenido a PlayerReview! Aquí encontrarás las mejores reseñas de videojuegos,
                         hechas por y para gamers. Explora análisis detallados, descubre nuevos títulos y
                         comparte tus opiniones. ¡Únete a nuestra comunidad y lleva tu experiencia de juego
                         al siguiente nivel!
                     </p>
-                    {!sessionData.isLogged &&
+                    {!userData.name &&
                         <div>
                             <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'>
                                 <Link href={'/login'}> Iniciar sesión</Link>

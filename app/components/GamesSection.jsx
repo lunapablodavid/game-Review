@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
 import GamesInfo from './GamesInfo';
-import { SessionContext } from '../context/SessionContext';
+import { useUser } from '../context/userContext';
 
 const gamesData = [
     {
@@ -157,8 +157,8 @@ const gamesData = [
 export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
     const [expanded, setExpanded] = useState(false);
-    const { sessionData } = useContext(SessionContext);
     const [selectedGame, setSelectedGame] = useState(null);
+    const {userData} = useUser();
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);
@@ -179,60 +179,60 @@ export const GamesSection = () => {
 
     return (
         <>
-            {sessionData.isLogged &&
+            {userData.name &&
                 <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                     Categorias y Juegos
                 </h2>}
-            <div className='text-white justify-center items-center grid md:grid-cols-4 gap-3 md:gap-4 p-4 mb-8'>
-                {sessionData.isLogged &&
+            <div className='text-white justify-center items-center grid md:grid-cols-5 gap-3 md:gap-4 p-4 mb-8'>
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Todos'
                         isSelected={tag === 'Todos'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Accion'
                         isSelected={tag === 'Accion'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Autos'
                         isSelected={tag === 'Autos'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Aventura'
                         isSelected={tag === 'Aventura'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='FPS'
                         isSelected={tag === 'FPS'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='MMO'
                         isSelected={tag === 'MMO'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Online'
                         isSelected={tag === 'Online'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='Survival'
                         isSelected={tag === 'Survival'}
                     />}
-                {sessionData.isLogged &&
+                {userData.name &&
                     <GamesTags
                         onClick={handdleTagChange}
                         name='RPG'
@@ -241,7 +241,7 @@ export const GamesSection = () => {
 
 
             </div>
-            {sessionData.isLogged &&
+            {userData.name &&
                 <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
                     {displayedGames.map((game) => (
                         <GamesCard
@@ -256,7 +256,7 @@ export const GamesSection = () => {
                     ))}
                 </div>}
                 
-                {sessionData.isLogged && selectedGame && (
+                {userData.name && selectedGame && (
         <div>
         <GamesInfo
           id={selectedGame.id}
@@ -268,7 +268,7 @@ export const GamesSection = () => {
         </div>
       )}          
 
-            {sessionData.isLogged && !expanded && (
+            {userData.name && !expanded && (
                 <div className='flex justify-center mt-10'>
                     <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
                         onClick={() => setExpanded(true)}>
@@ -277,7 +277,7 @@ export const GamesSection = () => {
 
                 </div>
             )}
-            {sessionData.isLogged && expanded && (
+            {userData.name && expanded && (
                 <div className='flex justify-center mt-10'>
                     <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
                         onClick={() => setExpanded(false)}>

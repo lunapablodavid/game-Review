@@ -21,23 +21,12 @@ const LoginForm = () => {
         body: JSON.stringify({ username, password })
       })
       if (!res.ok){
+      //Recibimos el mensaje de error desde el servidor y lo mostramos en ventana modal.
         const err = await res.json()
         return setError(err.message)
       } 
-
       const data = await res.json()
-
-      //Guardamos el token para su posterior uso en otras request!
-      const userData = {
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        rol: data.rol,
-        token: data.access_token,
-        isLogged: true
-      }
-      const objJson = JSON.stringify(userData)
-      localStorage.setItem('data', objJson)
+      localStorage.setItem('token', data.token)
 
       window.location.href = '/';
     } catch (error) {
