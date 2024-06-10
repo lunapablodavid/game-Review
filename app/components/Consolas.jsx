@@ -2,7 +2,7 @@
 import React, { useEffect, useTransition, useState } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
-import { useUser } from '../context/userContext';
+import { useUser } from '../context/UserContext';
 
 const tab_data = [{
     title: 'Portatiles',

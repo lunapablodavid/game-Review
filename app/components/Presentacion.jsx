@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
-import { useUser } from '../context/userContext';
+import { useUser } from '../context/UserContext';
 
 const Presentacion = () => {
 

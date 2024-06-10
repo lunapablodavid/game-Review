@@ -3,7 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
 import { GamesSection } from "./components/GamesSection";
 import  Footer  from "./components/footer";
-import { UserProvider } from "./context/userContext";
+import { UserProvider } from "./context/UserContext";
 
 export default function Home() {
   return (

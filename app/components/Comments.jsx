@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useUser } from '../context/userContext';
+import { useUser } from '../context/UserContext';
 
 const Comments = ({ gameId }) => {
     const {userData} = useUser();
