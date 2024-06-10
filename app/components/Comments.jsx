@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { useUser } from '../context/userContext';
+import { useUser } from '../context/UserContext';
 
 const Comments = ({ gameId }) => {
     const {userData} = useUser();
@@ -70,8 +70,7 @@ const Comments = ({ gameId }) => {
             <button onClick={handlePostComment} className="mt-6 px-4 py-2 bg-blue-500 text-white rounded">
                 Postear
             </button>
-            </div>}
-        </div>
+            </div>
     );
 };
 

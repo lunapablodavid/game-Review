@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
 import GamesInfo from './GamesInfo';
-import { useUser } from '../context/userContext';
+import { useUser } from '../context/UserContext';
 
 const gamesData = [
     {
