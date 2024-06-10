@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';

@@ -7,19 +7,18 @@ import { MenuOverlay } from './MenuOverlay';
 import Image from 'next/image';
 import { useUser } from '../context/UserContext';
 
-
 const navlinks = [
     {
-        title: 'Juegos',
-        path: '#juegos'
+        title: 'Home',
+        path: '#Presentacion'
     },
     {
-        title: 'Genero',
-        path: '#genero'
+        title: 'Consolas',
+        path: '#consolas'
     },
     {
-        title: 'Comunidad',
-        path: '#comunidad'
+        title: 'Categorias y Juegos',
+        path: '#games-section'
     },
     {
         title: 'About us',
@@ -30,11 +29,20 @@ const navlinks = [
 export const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
     const {userData} = useUser();
+    
+    const scrollToSection = (id) => {
+        const element = document.querySelector(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setNavbarOpen(false);
+        }
+    };
+    
 
     return (
         <nav className='fixed top-0 right-0 left-0 z-10 bg-[#121212] bg-opacity-95'>
             <div className='flex flex-wrap items-center justify-between mx-auto px-8'>
-                <Link href={'/'} className='text-2xl md:text-xl text-white font-semibold mt-3 mb-3'>
+                <Link href={'/'} className='text-1lg md:text-lg text-white font-semibold mt-3 mb-3'>
                     <Image
                         src='/images/logo-nav.png'
                         alt='logo'
@@ -59,7 +67,7 @@ export const Navbar = () => {
                         {
                             userData.name &&
                             navlinks.map((link, index) => (
-                                <li key={index}>
+                                <li key={index} onClick={() => scrollToSection(link.path)}>
                                     <Navlink href={link.path} title={link.title} />
                                 </li>
                             ))
@@ -67,7 +75,7 @@ export const Navbar = () => {
                     </ul>
                 </div>
             </div>
-            {navbarOpen ? <MenuOverlay links={navlinks} /> : null}
+            {navbarOpen ? <MenuOverlay links={navlinks} onClickLink={scrollToSection} /> : null}
         </nav>
     )
 }

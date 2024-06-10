@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
 import GamesInfo from './GamesInfo';
@@ -181,7 +181,7 @@ export const GamesSection = () => {
         <>
             {userData.name &&
                 <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
-                    Juegos
+                    Categorias y Juegos
                 </h2>}
             <div className='text-white justify-center items-center grid md:grid-cols-5 gap-3 md:gap-4 p-4 mb-8'>
                 {userData.name &&
@@ -289,4 +289,4 @@ export const GamesSection = () => {
     )
 }
 
-export default GamesSection;
+export default GamesSection

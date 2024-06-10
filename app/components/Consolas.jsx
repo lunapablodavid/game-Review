@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useTransition, useState } from 'react';
+import React, { useContext, useTransition, useState } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
 import { useUser } from '../context/UserContext';

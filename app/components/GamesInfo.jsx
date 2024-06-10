@@ -21,4 +21,3 @@ const GamesInfo = ({ id, title, description, imgUrl, onClose }) => {
 }
 
 export default GamesInfo
-
