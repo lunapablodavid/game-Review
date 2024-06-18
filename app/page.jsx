@@ -4,7 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
 import { GamesSection } from "./components/GamesSection";
 import { AuthProvider } from "./context/AuthContext";
-
+import {Categorias} from "./components/Categorias";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-[#121212]">
@@ -14,6 +14,7 @@ export default function Home() {
               <Presentacion />
               <Consolas />
               <GamesSection />
+              <Categorias />
             </div>
         </AuthProvider>
     </main>

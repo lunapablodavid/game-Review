@@ -1,0 +1,23 @@
+[33mcommit 5d7617259a6b7098655e58cd44ed1437ae7298fd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mnombre-de-tu-nueva-rama[m[33m)[m
+Author: “usuariogit config --global user.name “delgado.camilo87 <usuario@example.com>
+Date:   Wed May 15 02:42:19 2024 -0300
+
+    prueba de uso del context
+
+[33mcommit df23f4364173d791a6c93751dbd0ed1efebdf364[m
+Author: “usuariogit config --global user.name “delgado.camilo87 <usuario@example.com>
+Date:   Mon May 13 16:41:11 2024 -0300
+
+    boton de ver mas funcional
+
+[33mcommit 2c7a578dc3a1b0729e1c746d5c9b8aceb0c689be[m
+Author: “usuariogit config --global user.name “delgado.camilo87 <usuario@example.com>
+Date:   Fri May 3 02:52:45 2024 -0300
+
+    iconos modificados
+
+[33mcommit 0e48c707917b681060f71f660a1ede9a582b8509[m
+Author: “usuariogit config --global user.name “delgado.camilo87 <usuario@example.com>
+Date:   Fri May 3 01:35:01 2024 -0300
+
+    primer commit

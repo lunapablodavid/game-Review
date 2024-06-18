@@ -1,14 +1,20 @@
-import React from 'react'
+"use client";
+import React from 'react';
 
-export const GamesTags = ({ name, onClick, isSelected}) => {
-    const buttonStyles = isSelected 
-    ? 'text-white bg-purple-500'
-    : 'text-[#adb7be] border-slate-600 hover:border-white'
+const GamesTags = ({ name, onClick, isSelected }) => {
+    const handleClick = () => {
+        onClick(name);
+    };
+
     return (
-        <button className={`${buttonStyles} rounded-full border-2 px-6 py-3 text-xl cursor-pointer`}
-        onClick={()=>onClick(name)}
+        <button
+            className={`py-2 px-4 rounded-full ${isSelected ? 'bg-blue-600' : 'bg-gray-400'} text-white`}
+            onClick={handleClick}
+
         >
             {name}
         </button>
-    )
-}
+    );
+};
+
+export default GamesTags 
