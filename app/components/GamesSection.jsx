@@ -1,49 +1,54 @@
-"use client"
-import React, { useState, useEffect } from "react";
-
-const GamesSection = ({ selectedTag }) => {
-    const [juegos, setJuegos] = useState([]);
-    const [error, setError] = useState(null);
-    const baseUrl = 'http://localhost:3001/videogames';
+"use client";
+import React, { useState, useEffect } from 'react';
+import GamesCard from './GamesCard';
+import Category from './Categorias'; 
+export const GamesSection = () => {
+    const [tag, setTag] = useState('Todos');
+    const [games, setGames] = useState([]);
 
     useEffect(() => {
-        const obtenerJuegos = async () => {
+        const fetchData = async () => {
             try {
-                let url = baseUrl;
-                if (selectedTag !== 'Todos') {
-                    url = `http://localhost:3001/category/name/${selectedTag}`;
+                let url = 'http://localhost:3001/video_game/';
+                if (tag !== 'Todos') {
+                    url += `category/${tag}`;
                 }
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error('Error al obtener los juegos');
                 }
                 const data = await response.json();
-                if (selectedTag === 'Todos') {
-                    setJuegos(data);
-                } else {
-                    setJuegos(data.videoGame || []);
-                }
+                setGames(data);
             } catch (error) {
                 console.error('Error al obtener los juegos:', error);
-                setError(error.message);
             }
         };
+        
+        fetchData();
+        console.log(tag);
+    }, [tag]);
 
-        obtenerJuegos();
-    }, [selectedTag]);
+    const handleTagChange = (newTag) => {
+        setTag(newTag);
+    };
 
     return (
-        <div className='juegos-container'>
-            {error && <div className='text-center text-red-500'>Error: {error}</div>}
-            {juegos.length === 0 && !error && <div className='text-center text-red-500'>No hay juegos disponibles</div>}
-            {juegos.length > 0 && juegos.map(juego => (
-                <div key={juego.id} className='juego-item'>
-                    <h3>{juego.name}</h3>
-                    <p>{juego.description}</p>
-                    <p>Calificación: {juego.qualification}</p>
-                </div>
-            ))}
-        </div>
+        <>
+            <Category onTagChange={handleTagChange} selectedTag={tag} />
+            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
+                Juegos
+            </h2>
+            <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
+                {games.map((game) => (
+                    <GamesCard
+                        key={game.id}
+                        title={game.name}
+                        description={game.description}
+                        imgUrl={game.images}
+                    />
+                ))}
+            </div>
+        </>
     );
 };
 
