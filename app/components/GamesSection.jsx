@@ -158,7 +158,7 @@ export const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
     const [expanded, setExpanded] = useState(false);
     const [selectedGame, setSelectedGame] = useState(null);
-    const {userData} = useUser();
+    const {userData} = useUser() || {};
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);

@@ -43,7 +43,7 @@ const tab_data = [{
 export const Consolas = () => {
     const [tab, setTab] = useState("portatiles");
     const [isPending, startTransition] = useTransition();
-    const {userData} = useUser();
+    const {userData} = useUser() || {};
     
     
     const handleTabChange = (id) => {

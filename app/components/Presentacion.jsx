@@ -8,7 +8,7 @@ import { useUser } from '../context/UserContext';
 
 const Presentacion = () => {
 
-const {userData} = useUser();
+const {userData} = useUser()|| {};
 
     return (
         <section >

@@ -28,14 +28,16 @@ const navlinks = [
 
 export const Navbar = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
-    const {userData} = useUser();
+    const {userData} = useUser()|| {};
     
     const scrollToSection = (id) => {
+        if(id[0]==='#'){
         const element = document.querySelector(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
             setNavbarOpen(false);
         }
+    }
     };
     
 
