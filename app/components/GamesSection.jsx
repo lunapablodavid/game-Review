@@ -1,164 +1,188 @@
 "use client";
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import GamesCard from './GamesCard';
 import { GamesTags } from './GamesTags';
 import GamesInfo from './GamesInfo';
 import { useUser } from '../context/UserContext';
 
-const gamesData = [
-    {
-        id: 1,
-        title: 'BioShock 1',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/bioshock1.png',
-        tag: ['Todos', 'FPS'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 2,
-        title: 'League of legends',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/lol.png',
-        tag: ['Todos', 'MMO', 'Online'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 3,
-        title: 'GTA V',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/gtav.png',
-        tag: ['Todos', 'Autos', 'Accion'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 4,
-        title: 'FallOut 76',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/fallout76.png',
-        tag: ['Todos', 'RPG', 'Online'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 5,
-        title: 'Doom: Eternal',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/doom_eternal.png',
-        tag: ['Todos', 'FPS'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 6,
-        title: 'Dead Cells',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/dead_cells.png',
-        tag: ['Todos', 'Plataforma', 'Aventura'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 7,
-        title: 'The last of us 2',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/tlou2.png',
-        tag: ['Todos', 'Accion'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 8,
-        title: 'Call of Duty: Modern Warfare 3 Remake',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/cod3rm.png',
-        tag: ['Todos', 'FPS', 'Online'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 9,
-        title: 'Dead Island 2',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/di2.png',
-        tag: ['Todos', 'FPS', 'Survival'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    ,
-    {
-        id: 10,
-        title: 'GTA V',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/gtav.png',
-        tag: ['Todos', 'Autos', 'Accion'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 11,
-        title: 'FallOut 76',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/fallout76.png',
-        tag: ['Todos', 'RPG', 'Online'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 12,
-        title: 'Doom: Eternal',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/doom_eternal.png',
-        tag: ['Todos', 'FPS'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 13,
-        title: 'Dead Cells',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/dead_cells.png',
-        tag: ['Todos', 'Plataforma', 'Aventura'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 14,
-        title: 'The last of us 2',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/tlou2.png',
-        tag: ['Todos', 'Accion'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 15,
-        title: 'Call of Duty: Modern Warfare 3 Remake',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/cod3rm.png',
-        tag: ['Todos', 'FPS', 'Online'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
-    {
-        id: 16,
-        title: 'Dead Island 2',
-        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
-        image: '/images/juegos/di2.png',
-        tag: ['Todos', 'FPS', 'Survival'],
-        gameUrl: '/',
-        previewUrl: '/',
-    },
+// const gamesData = [
+//     {
+//         id: 1,
+//         name: 'BioShock 1',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/bioshock1.png',
+//         tag: ['Todos', 'FPS'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 2,
+//         name: 'League of legends',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/lol.png',
+//         tag: ['Todos', 'MMO', 'Online'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 3,
+//         name: 'GTA V',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/gtav.png',
+//         tag: ['Todos', 'Autos', 'Accion'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 4,
+//         name: 'FallOut 76',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/fallout76.png',
+//         tag: ['Todos', 'RPG', 'Online'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 5,
+//         name: 'Doom: Eternal',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/doom_eternal.png',
+//         tag: ['Todos', 'FPS'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 6,
+//         name: 'Dead Cells',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/dead_cells.png',
+//         tag: ['Todos', 'Plataforma', 'Aventura'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 7,
+//         name: 'The last of us 2',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/tlou2.png',
+//         tag: ['Todos', 'Accion'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 8,
+//         name: 'Call of Duty: Modern Warfare 3 Remake',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/cod3rm.png',
+//         tag: ['Todos', 'FPS', 'Online'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 9,
+//         name: 'Dead Island 2',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/di2.png',
+//         tag: ['Todos', 'FPS', 'Survival'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     ,
+//     {
+//         id: 10,
+//         name: 'GTA V',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/gtav.png',
+//         tag: ['Todos', 'Autos', 'Accion'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 11,
+//         name: 'FallOut 76',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/fallout76.png',
+//         tag: ['Todos', 'RPG', 'Online'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 12,
+//         name: 'Doom: Eternal',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/doom_eternal.png',
+//         tag: ['Todos', 'FPS'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 13,
+//         name: 'Dead Cells',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/dead_cells.png',
+//         tag: ['Todos', 'Plataforma', 'Aventura'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 14,
+//         name: 'The last of us 2',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/tlou2.png',
+//         tag: ['Todos', 'Accion'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 15,
+//         name: 'Call of Duty: Modern Warfare 3 Remake',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/cod3rm.png',
+//         tag: ['Todos', 'FPS', 'Online'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
+//     {
+//         id: 16,
+//         name: 'Dead Island 2',
+//         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore totam perferendis nemo at? Quae, ullam! Asperiores ut amet ducimus obcaecati mollitia, et nobis, consequatur aut autem facere numquam sit cupiditate!',
+//         image: '/images/juegos/di2.png',
+//         tag: ['Todos', 'FPS', 'Survival'],
+//         gameUrl: '/',
+//         previewUrl: '/',
+//     },
 
-];
+// ];
 
 export const GamesSection = () => {
+    const [gamesData, setGamesData] = useState([])
     const [tag, setTag] = useState('Todos');
     const [expanded, setExpanded] = useState(false);
     const [selectedGame, setSelectedGame] = useState(null);
     const {userData} = useUser() || {};
+
+    useEffect(() => {
+
+        const fetchGames = async () => {
+            console.log(userData.token);
+            try {
+                const res = await fetch(`http://localhost:3000/video_games`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${userData.token}` },
+                });
+                if(res.ok){ 
+                const data = await res.json();
+                setGamesData(data);
+            }
+            } catch (error) {
+                console.error("Error al cargar los juegos:", error);
+                setGamesData([]);
+            }
+        };
+
+        fetchGames();
+    }, [userData]);
+
 
     const handdleTagChange = (newTag) => {
         setTag(newTag);
@@ -173,10 +197,10 @@ export const GamesSection = () => {
       };
 
     const filteredGames = gamesData.filter((game) =>
-        game.tag.includes(tag)
+        game.categoria.includes(tag)
     );
     const displayedGames = expanded ? filteredGames : filteredGames.slice(0, 9);
-
+    console.log(gamesData);
     return (
         <>
             {userData.name &&
@@ -247,7 +271,7 @@ export const GamesSection = () => {
                         <GamesCard
                             onEyeClick={() => handleGameCardClick(game)}
                             key={game.id}
-                            title={game.title}
+                            name={game.name}
                             description={game.description}
                             imgUrl={game.image}
                             gameUrl={game.gameUrl}
@@ -260,7 +284,7 @@ export const GamesSection = () => {
         <div>
         <GamesInfo
           id={selectedGame.id}
-          title={selectedGame.title}
+          name={selectedGame.name}
           description={selectedGame.description}
           imgUrl={selectedGame.image}
           onClose={handleCloseModal}
