@@ -7,14 +7,12 @@ const GamesTags = ({ name, onClick, isSelected }) => {
     };
 
     return (
-        <button
-            className={`py-2 px-4 rounded-full ${isSelected ? 'bg-blue-600' : 'bg-gray-400'} text-white`}
-            onClick={handleClick}
-
+        <button className={`rounded-full border-2 px-6 py-3 sm:text-sm cursor-pointer ${isSelected ? 'bg-blue-500 text-white' : 'bg-gray-500 text-black'}`}
+        onClick={handleClick}
         >
             {name}
         </button>
     );
 };
 
-export default GamesTags 
+export default GamesTags;

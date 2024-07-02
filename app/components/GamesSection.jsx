@@ -45,6 +45,9 @@ export const GamesSection = () => {
                         title={game.name}
                         description={game.description}
                         imgUrl={game.images}
+                        gameUrl={game.company?.siteUrl}
+                       
+                        
                     />
                 ))}
             </div>

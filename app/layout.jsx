@@ -4,15 +4,17 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Games Review",
+
+  title: "Player Review",
   description: "La mejor Comunidad",
-  favicon: "/images/logo-nav.png"
+
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">    
-      <body className={inter.className}>{children}</body>      
+    <html lang="en">
+      <link rel="shortcut icon" href="public/images/favicon.ico" type="image/x-icon"></link>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

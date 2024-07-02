@@ -1,22 +1,28 @@
-import Image from "next/image";
 import Presentacion from "./components/Presentacion";
 import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
 import { GamesSection } from "./components/GamesSection";
-import { AuthProvider } from "./context/AuthContext";
-import Category from "./components/Categorias";
+import Footer from "./components/footer";
+import { SessionProvider } from './context/SessionContext';
+
 export default function Home() {
   return (
+      <SessionProvider>
     <main className="flex min-h-screen flex-col bg-[#121212]">
-      <AuthProvider>
         <Navbar />
         <div className="container mt-24 mx-auto px-12 py-4">
-          <Presentacion />
-          <Consolas />
-          <GamesSection />
-         
+          <section id="presentacion">
+            <Presentacion />
+          </section>
+          <section id="consolas">
+            <Consolas />
+          </section>
+          <section id="games-section">
+            <GamesSection />
+          </section>
         </div>
-      </AuthProvider>
+        <Footer />
     </main>
+      </SessionProvider>
   );
 }
