@@ -8,19 +8,17 @@ const Comments = ({ gameId }) => {
     const [newComment, setNewComment] = useState("");
     const [msgError, setError] = useState(null);
 
-
     useEffect(() => {
-
         const fetchComments = async () => {
             try {
                 const res = await fetch(`http://localhost:3000/comments/games/${gameId}`, {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${userData.token}` },
                 });
-                if(res.ok){ //Lograr que data sea un arreglo y no un array
-                const data = await res.json();
-                setComments(data);
-            }
+                if (res.ok) {
+                    const data = await res.json();
+                    setComments(data);
+                }
             } catch (error) {
                 console.error("Error al cargar los comentarios:", error);
                 setComments([]);
@@ -28,12 +26,12 @@ const Comments = ({ gameId }) => {
         };
 
         fetchComments();
-    }, [gameId]);
+    }, [gameId, userData.token]);
 
     const handlePostComment = async () => {
         if (newComment.trim()) {
-            const newCommentObject = { comment: newComment, userId: userData.id, videoGameId: gameId };
-            console.log(comments);
+            const commentWithUserInfo = `${userData.name} - ${new Date().toLocaleString()}: ${newComment}`;
+            const newCommentObject = { comment: commentWithUserInfo, userId: userData.id, videoGameId: gameId };
             setComments([...comments, newCommentObject]);
             setNewComment("");
             try {
@@ -46,8 +44,8 @@ const Comments = ({ gameId }) => {
                     body: JSON.stringify(newCommentObject),
                 });
                 if (!res.ok) {
-                    const err = await res.json()
-                    return setError(err.message)
+                    const err = await res.json();
+                    return setError(err.message);
                 }
             } catch (error) {
                 setError(error.message);
@@ -57,7 +55,7 @@ const Comments = ({ gameId }) => {
 
     const closeModal = () => {
         setError(null);
-      };
+    };
 
     return (
         <div>
