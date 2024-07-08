@@ -1,14 +1,14 @@
 import Presentacion from "./components/Presentacion";
 import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
-import { GamesSection } from "./components/GamesSection";
-import Footer from "./components/footer";
+import GamesSection from "./components/GamesSection";
+import Footer from "./components/Footer"; // Asegúrate de que el nombre sea correcto
 import { SessionProvider } from './context/SessionContext';
-
+import Category from "./components/Categorias";
 export default function Home() {
   return (
-      <SessionProvider>
-    <main className="flex min-h-screen flex-col bg-[#121212]">
+    <SessionProvider>
+      <main className="flex min-h-screen flex-col bg-[#121212]">
         <Navbar />
         <div className="container mt-24 mx-auto px-12 py-4">
           <section id="presentacion">
@@ -17,12 +17,16 @@ export default function Home() {
           <section id="consolas">
             <Consolas />
           </section>
-          <section id="games-section">
+        
+          <section id="categorias-section">
+            <Category />
+          </section> 
+           <section id="games-section">
             <GamesSection />
           </section>
         </div>
         <Footer />
-    </main>
-      </SessionProvider>
+      </main>
+    </SessionProvider>
   );
 }
