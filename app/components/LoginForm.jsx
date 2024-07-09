@@ -1,4 +1,3 @@
-// LoginForm.js
 "use client";
 
 import Link from 'next/link';
@@ -7,12 +6,14 @@ import Image from 'next/image';
 import { useUser } from '../context/UserContext';
 import UserPanel from './UserPanel';
 
+
 const LoginForm = () => {
-  const { userData, setUserData } = useUser();
+  const { userData, setUserData } = useUser({});
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [msgError, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,10 +32,10 @@ const LoginForm = () => {
         setIsLoading(false);
         return setError(err.message);
       }
-
       const data = await res.json();
       localStorage.setItem('token', data.token);
       setUserData(data);
+      window.location.href='/'
     } catch (error) {
       setIsLoading(false);
       setError(error.message);
@@ -67,7 +68,7 @@ const LoginForm = () => {
     );
   }
 
-  if (userData) {
+  if (!Object.keys(userData).length==0) {
     return <UserPanel />;
   }
 

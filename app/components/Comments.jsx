@@ -22,6 +22,7 @@ const Comments = ({ gameId }) => {
             } catch (error) {
                 console.error("Error al cargar los comentarios:", error);
                 setComments([]);
+                localStorage.removeItem('token')
             }
         };
 
