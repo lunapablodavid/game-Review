@@ -16,7 +16,7 @@ const GamesCard = ({ imgUrl, title, description, gameUrl, onEyeClick }) => {
                         <EyeIcon className='h-10 w-10 text-[#adb7be] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group-hover/link:text-white' />
                     </button>
                     <Link
-                        href={gameUrl || '/fallback-url'} // Asegúrate de que siempre haya una URL
+                        href={gameUrl || '/fallback-url'} 
                         className='h-14 w-14 border-2 relative rounded-full border-[#adb7be] hover:border-white group/link'
                     >
                         <GlobeAltIcon className='h-10 w-10 text-[#adb7be] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group-hover/link:text-white' />

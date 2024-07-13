@@ -2,9 +2,10 @@ import Presentacion from "./components/Presentacion";
 import { Navbar } from "./components/Navbar";
 import { Consolas } from "./components/Consolas";
 import GamesSection from "./components/GamesSection";
-import Footer from "./components/Footer"; // Asegúrate de que el nombre sea correcto
+import Footer from "./components/Footer";
 import { SessionProvider } from './context/SessionContext';
 import Category from "./components/Categorias";
+
 export default function Home() {
   return (
     <SessionProvider>
@@ -17,11 +18,10 @@ export default function Home() {
           <section id="consolas">
             <Consolas />
           </section>
-        
-          <section id="categorias-section">
+          {/* <section id="categories-section">
             <Category />
-          </section> 
-           <section id="games-section">
+          </section> */}
+          <section id="games-section">
             <GamesSection />
           </section>
         </div>

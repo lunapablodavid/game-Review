@@ -1,10 +1,14 @@
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import GamesCard from './GamesCard';
 import Category from './Categorias'; 
-export const GamesSection = () => {
+import GamesInfo from './GamesInfo';
+
+const GamesSection = () => {
     const [tag, setTag] = useState('Todos');
     const [games, setGames] = useState([]);
+    const [selectedGame, setSelectedGame] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,11 +50,20 @@ export const GamesSection = () => {
                         description={game.description}
                         imgUrl={game.images}
                         gameUrl={game.company?.siteUrl}
-                       
-                        
+                        onEyeClick={() => setSelectedGame(game)}
                     />
                 ))}
             </div>
+            {selectedGame && (
+                <GamesInfo
+                    id={selectedGame.id}
+                    title={selectedGame.name}
+                    description={selectedGame.description}
+                    // qualification={selectedGame.qualification}
+                    imgUrl={selectedGame.images}
+                    onClose={() => setSelectedGame(null)}
+                />
+            )}
         </>
     );
 };

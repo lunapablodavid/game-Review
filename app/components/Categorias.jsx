@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState, useEffect } from "react";
 import GamesTags from './GamesTags';
 
@@ -6,7 +6,8 @@ const Category = ({ onTagChange, selectedTag }) => {
     const [categorias, setCategorias] = useState([]); 
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const baseUrl = 'http://localhost:3001/category/';
+    const baseUrl = 'http://localhost:3001/category/'; 
+    // const [tag, setTag] = useState('Todos');
 
     useEffect(() => {
         const obtenerCategorias = async () => {
@@ -17,6 +18,8 @@ const Category = ({ onTagChange, selectedTag }) => {
                 }
                 const data = await response.json();
                 setCategorias(data);
+         
+               
             } catch (error) {
                 console.error('Error al obtener las categorías:', error);
                 setError(error.message);
@@ -25,14 +28,14 @@ const Category = ({ onTagChange, selectedTag }) => {
             }
         };
 
-        obtenerCategorias(); // Llamamos a obtenerCategorias cuando se monta el componente
-
-    }, []); // Dependencia vacía para que se ejecute solo una vez al montarse el componente
+        obtenerCategorias();
+    }, []);
 
     const manejarClickTag = (nuevoTag) => {
         onTagChange(nuevoTag);
+        console.log(`Tag clicked: ${nuevoTag}`);
     };
-
+ 
     return (
         <>
             <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
