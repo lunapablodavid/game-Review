@@ -1,13 +1,24 @@
+// UserContext.js
 "use client";
-
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Función para decodificar el token JWT
 function parseJwt(token) {
-  if (!token) { return; }
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace('-', '+').replace('_', '/');
-  return JSON.parse(window.atob(base64));
+  if (!token) { return null; }
+
+  const tokenParts = token.split('.');
+  if (tokenParts.length !== 3) {
+    throw new Error('Invalid JWT token format');
+  }
+
+  const base64Url = tokenParts[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  
+  try {
+    return JSON.parse(window.atob(base64));
+  } catch (error) {
+    throw new Error('Error decoding JWT token');
+  }
 }
 
 // Creación del contexto de usuario
@@ -38,3 +49,5 @@ export const UserProvider = ({ children }) => {
 
 // Hook personalizado para consumir el contexto de usuario
 export const useUser = () => useContext(UserContext);
+
+export default UserContext;

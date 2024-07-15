@@ -69,7 +69,7 @@ const RegisterForm = () => {
           <label htmlFor="confirmPassword" className="block text-gray-500 font-semibold mb-1">Confirmar contraseña</label>
           <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} id="confirmPassword" name="confirmPassword" className="border text-black border-gray-300 px-3 py-1 w-full rounded-md focus:outline-none focus:border-blue-500" />
         </div>
-        <div className="flex justify-between">
+        <div className="flex md:flex-row flex-col justify-between">
           <button type="submit" className="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-500 focus:outline-none focus:bg-blue-600">Registrarse</button>
           <button type="button" className="bg-gray-700 text-gray-200 px-4 py-2 rounded-md hover:bg-gray-400 focus:outline-none focus:bg-gray-400"><Link href={'/'}>Salir</Link></button>
         </div>
