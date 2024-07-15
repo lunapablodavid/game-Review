@@ -6,7 +6,7 @@ const Category = ({ onTagChange, selectedTag }) => {
     const [categorias, setCategorias] = useState([]); 
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const baseUrl = 'http://localhost:3001/category/'; 
+    const baseUrl = 'http://localhost:3000/category/'; 
     // const [tag, setTag] = useState('Todos');
 
     useEffect(() => {
