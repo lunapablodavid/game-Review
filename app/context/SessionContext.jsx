@@ -1,43 +1,32 @@
-"use client";
+"use client"
 
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 function parseJwt(token) {
-  if (!token) {
-    return;
-  }
-
-  const parts = token.split('.');
-  if (parts.length !== 3) {
-    return;
-  }
-
-  const base64Url = parts[1];
+  if (!token) { return; }
+  const base64Url = token.split('.')[1];
   const base64 = base64Url.replace('-', '+').replace('_', '/');
-  try {
-    return JSON.parse(window.atob(base64));
-  } catch (e) {
-    console.error('Error decoding token:', e);
-    return;
-  }
+  return JSON.parse(window.atob(base64));
 }
 
-export const SessionContext = createContext();
+const UserContext = createContext();
 
-export const SessionProvider = ({ children }) => {
-  const [sessionData, setSessionData] = useState({});
+export const UserProvider = ({ children }) => {
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('token');
-      const decodedToken = parseJwt(token);
-      setSessionData(decodedToken ? { token, ...decodedToken } : {});
+      const decodedToken=parseJwt(token);
+      setUserData(decodedToken ? {token, ...decodedToken} : {});
     }
   }, []);
 
   return (
-    <SessionContext.Provider value={{ sessionData, setSessionData }}>
+    <UserContext.Provider value={{ userData, setUserData }}>
       {children}
-    </SessionContext.Provider>
+    </UserContext.Provider>
   );
 };
+
+export const useUser = () => useContext(UserContext);
