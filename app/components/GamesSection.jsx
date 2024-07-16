@@ -13,7 +13,7 @@ const GamesSection = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let url = 'http://localhost:3000/video_games/';
+                let url = 'http://localhost:3000/video_game/';
                 if (tag !== 'Todos') {
                     url += `category/${tag}`;
                 }
