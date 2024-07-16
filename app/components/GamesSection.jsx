@@ -57,7 +57,7 @@ export const GamesSection = () => {
           />
         ))}
       </div>
-      {/* {selectedGame && (
+       {selectedGame && (
                 <GamesInfo
                     id={selectedGame.id}
                     title={selectedGame.name}
@@ -65,7 +65,7 @@ export const GamesSection = () => {
                     imgUrl={selectedGame.images}
                     onClose={() => setSelectedGame(null)}
                 />
-            )} */}
+            )} 
       {userData.name && !expanded && (
         <div className='flex justify-center mt-10'>
           <button className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
