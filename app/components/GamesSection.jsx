@@ -52,7 +52,7 @@ export const GamesSection = () => {
             description={game.description}
             imgUrl={game.images}
             gameUrl={game.company?.siteUrl}
-            previewUrl={game.previewUrl}
+            // previewUrl={game.previewUrl}
             onEyeClick={() => setSelectedGame(game)}
           />
         ))}
