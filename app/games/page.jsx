@@ -6,6 +6,5 @@ export default function GamePage() {
         <div className= "min-h-screen flex items-center justify-center bg-black">      
             <GamesInfo/>
         </div>
-       
     )
 }
