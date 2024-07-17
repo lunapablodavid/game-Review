@@ -1,7 +1,8 @@
 "use client";
 import React from 'react';
 import Comments from './Comments';
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon, XmarkIcon } from "@heroicons/react/24/solid";
+import Image from 'next/image';
 
 const GamesInfo = ({ id, title, description, imgUrl, onClose }) => {
   return (
@@ -11,10 +12,8 @@ const GamesInfo = ({ id, title, description, imgUrl, onClose }) => {
           <h2 className="text-xl font-bold mb-1">{title}</h2>
           <button onClick={onClose}><XMarkIcon className='h-7 w-7' /></button>
         </div>
-        <div className='flex flex-col items-center mt-6 mb-6'>
-          <img src={imgUrl} alt={title} className="flex items-center rounded-t-xl h-52 md:h-72 mb-4" />
-          <p className='mt-6 mb-6'>{description}</p>
-        </div>
+        <div className='flex flex-col items-center mt-6 mb-6'><Image src={imgUrl} alt={title} className=" flex items-center rounded-t-xl h-52 md:h-72 mb-4" width={800} height={400} />
+        <p className='mt-6 mb-6'>{description}</p></div>
         <Comments gameId={id}/>
       </div>
     </div>

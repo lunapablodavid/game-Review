@@ -1,22 +1,32 @@
 "use client"
 
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
-export const SessionContext = createContext();
+function parseJwt(token) {
+  if (!token) { return; }
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse(window.atob(base64));
+}
 
-export const SessionProvider = ({ children }) => {
-  const [sessionData, setSessionData] = useState({});
+const UserContext = createContext();
+
+export const UserProvider = ({ children }) => {
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('data'));
-    if (userData) {
-      setSessionData(userData);
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('token');
+      const decodedToken=parseJwt(token);
+      setUserData(decodedToken ? {token, ...decodedToken} : {});
     }
   }, []);
 
   return (
-    <SessionContext.Provider value={{ sessionData, setSessionData }}>
+    <UserContext.Provider value={{ userData, setUserData }}>
       {children}
-    </SessionContext.Provider>
+    </UserContext.Provider>
   );
 };
+
+export const useUser = () => useContext(UserContext);

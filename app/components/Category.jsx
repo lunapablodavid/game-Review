@@ -7,7 +7,6 @@ const Category = ({ onTagChange, selectedTag }) => {
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
     const baseUrl = 'http://localhost:3000/category/'; 
-    // const [tag, setTag] = useState('Todos');
 
     useEffect(() => {
         const obtenerCategorias = async () => {
@@ -18,7 +17,6 @@ const Category = ({ onTagChange, selectedTag }) => {
                 }
                 const data = await response.json();
                 setCategorias(data);
-         
                
             } catch (error) {
                 console.error('Error al obtener las categorías:', error);
@@ -54,7 +52,7 @@ const Category = ({ onTagChange, selectedTag }) => {
                 {categorias.map(categoria => (
                     <GamesTags
                         key={categoria.id}
-                        onClick={() => manejarClickTag(categoria.name)}
+                        onClick={() => manejarClickTag(categoria.name)}//categoria?.videoGame(la asociacion como esta en nest)
                         name={categoria.name}
                         isSelected={selectedTag === categoria.name}
                     />
