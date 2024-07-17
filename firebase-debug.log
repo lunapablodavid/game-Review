@@ -1,0 +1,309 @@
+[debug] [2024-07-09T18:56:10.889Z] ----------------------------------------------------------------------
+[debug] [2024-07-09T18:56:10.900Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2024-07-09T18:56:10.902Z] CLI Version:   13.13.0
+[debug] [2024-07-09T18:56:10.903Z] Platform:      win32
+[debug] [2024-07-09T18:56:10.904Z] Node Version:  v21.6.2
+[debug] [2024-07-09T18:56:10.904Z] Time:          Tue Jul 09 2024 15:56:10 GMT-0300 (hora estándar de Argentina)
+[debug] [2024-07-09T18:56:10.905Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-09T18:56:11.174Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-09T18:56:11.176Z] > authorizing via signed-in user (matias_eguia@hotmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2024-07-09T18:56:11.374Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2024-07-09T18:56:11.375Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2024-07-09T18:56:11.375Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2024-07-09T18:56:11.393Z] [hub] writing locator at C:\Users\MAESOFT\AppData\Local\Temp\hub-player-review.json
+[debug] [2024-07-09T18:56:11.569Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/player-review [none]
+[debug] [2024-07-09T18:56:12.316Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/player-review 200
+[debug] [2024-07-09T18:56:12.316Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/player-review {"projectId":"player-review","projectNumber":"538337990706","displayName":"player-review","name":"projects/player-review","resources":{"hostingSite":"player-review"},"state":"ACTIVE","etag":"1_9c86f273-e3d9-4fad-82a9-df92ccd323d2"}
+[debug] [2024-07-09T18:56:29.541Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites pageToken=&pageSize=10
+[debug] [2024-07-09T18:56:30.790Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites 200
+[debug] [2024-07-09T18:56:30.790Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites {"sites":[{"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}]}
+[debug] [2024-07-09T18:56:30.792Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config [none]
+[debug] [2024-07-09T18:56:32.164Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config 200
+[debug] [2024-07-09T18:56:32.165Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config {"projectId":"player-review","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","storageBucket":"player-review.appspot.com","apiKey":"AIzaSyBZGKn4LQ9oC5uzW3yxQ3nY0QuKp0QJTsM","authDomain":"player-review.firebaseapp.com","messagingSenderId":"538337990706"}
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[debug] [2024-07-09T18:56:43.101Z] SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at findDependency (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\utils.js:188:23)
+    at getAstroVersion (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\astro\utils.js:39:45)
+    at discover (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\astro\index.js:17:49)
+    at discover (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:47:38)
+    at async prepareFrameworks (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:192:25)
+    at async Object.startAll (C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js:306:9)
+    at async C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\emulators-start.js:33:43
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-07-09T18:58:46.857Z] ----------------------------------------------------------------------
+[debug] [2024-07-09T18:58:46.864Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-09T18:58:46.866Z] CLI Version:   13.13.0
+[debug] [2024-07-09T18:58:46.866Z] Platform:      win32
+[debug] [2024-07-09T18:58:46.866Z] Node Version:  v21.6.2
+[debug] [2024-07-09T18:58:46.867Z] Time:          Tue Jul 09 2024 15:58:46 GMT-0300 (hora estándar de Argentina)
+[debug] [2024-07-09T18:58:46.867Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-09T18:58:47.046Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-09T18:58:47.047Z] > authorizing via signed-in user (matias_eguia@hotmail.com)
+[debug] [2024-07-09T18:58:47.047Z] [iam] checking project player-review for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-09T18:58:47.051Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions [none]
+[debug] [2024-07-09T18:58:47.051Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions x-goog-quota-user=projects/player-review
+[debug] [2024-07-09T18:58:47.051Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T18:58:48.226Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions 200
+[debug] [2024-07-09T18:58:48.226Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T18:58:48.228Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/player-review [none]
+[debug] [2024-07-09T18:58:48.718Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/player-review 200
+[debug] [2024-07-09T18:58:48.719Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/player-review {"projectId":"player-review","projectNumber":"538337990706","displayName":"player-review","name":"projects/player-review","resources":{"hostingSite":"player-review"},"state":"ACTIVE","etag":"1_9c86f273-e3d9-4fad-82a9-df92ccd323d2"}
+[debug] [2024-07-09T18:58:57.587Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites pageToken=&pageSize=10
+[debug] [2024-07-09T18:58:58.744Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites 200
+[debug] [2024-07-09T18:58:58.744Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites {"sites":[{"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}]}
+[debug] [2024-07-09T18:58:58.745Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config [none]
+[debug] [2024-07-09T18:58:59.660Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config 200
+[debug] [2024-07-09T18:58:59.660Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config {"projectId":"player-review","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","storageBucket":"player-review.appspot.com","apiKey":"AIzaSyBZGKn4LQ9oC5uzW3yxQ3nY0QuKp0QJTsM","authDomain":"player-review.firebaseapp.com","messagingSenderId":"538337990706"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-07-09T18:59:20.636Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review [none]
+[debug] [2024-07-09T18:59:21.688Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review 200
+[debug] [2024-07-09T18:59:21.688Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review {"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.3
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] uncaughtException Error: kill EPERM
+    at ChildProcess.kill (node:internal/child_process:512:26)
+    at ChildProcessWorker.forceExit (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\jest-worker\index.js:1:12879)
+    at Timeout._onTimeout (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\jest-worker\index.js:1:8684)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'kill'
+}
+
+[debug] [2024-07-09T18:59:48.642Z] Error: ENOENT: no such file or directory, open 'C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-07-09T19:03:50.077Z] ----------------------------------------------------------------------
+[debug] [2024-07-09T19:03:50.104Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-09T19:03:50.106Z] CLI Version:   13.13.0
+[debug] [2024-07-09T19:03:50.106Z] Platform:      win32
+[debug] [2024-07-09T19:03:50.107Z] Node Version:  v21.6.2
+[debug] [2024-07-09T19:03:50.108Z] Time:          Tue Jul 09 2024 16:03:50 GMT-0300 (hora estándar de Argentina)
+[debug] [2024-07-09T19:03:50.109Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-09T19:03:50.531Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-09T19:03:50.532Z] > authorizing via signed-in user (matias_eguia@hotmail.com)
+[debug] [2024-07-09T19:03:50.532Z] [iam] checking project player-review for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-09T19:03:50.622Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions [none]
+[debug] [2024-07-09T19:03:50.622Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions x-goog-quota-user=projects/player-review
+[debug] [2024-07-09T19:03:50.623Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T19:03:52.603Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions 200
+[debug] [2024-07-09T19:03:52.604Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T19:03:52.606Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/player-review [none]
+[debug] [2024-07-09T19:03:53.081Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/player-review 200
+[debug] [2024-07-09T19:03:53.081Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/player-review {"projectId":"player-review","projectNumber":"538337990706","displayName":"player-review","name":"projects/player-review","resources":{"hostingSite":"player-review"},"state":"ACTIVE","etag":"1_9c86f273-e3d9-4fad-82a9-df92ccd323d2"}
+[debug] [2024-07-09T19:04:04.006Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites pageToken=&pageSize=10
+[debug] [2024-07-09T19:04:05.211Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites 200
+[debug] [2024-07-09T19:04:05.211Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites {"sites":[{"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}]}
+[debug] [2024-07-09T19:04:05.212Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config [none]
+[debug] [2024-07-09T19:04:06.187Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config 200
+[debug] [2024-07-09T19:04:06.187Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config {"projectId":"player-review","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","storageBucket":"player-review.appspot.com","apiKey":"AIzaSyBZGKn4LQ9oC5uzW3yxQ3nY0QuKp0QJTsM","authDomain":"player-review.firebaseapp.com","messagingSenderId":"538337990706"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-07-09T19:04:28.599Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review [none]
+[debug] [2024-07-09T19:04:29.657Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review 200
+[debug] [2024-07-09T19:04:29.657Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review {"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.3
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./app/components/UserPanel.jsx
+28:4  Warning: React Hook useEffect has a missing dependency: 'userData.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/7) ...
+
+[info]    Generating static pages (1/7) 
+
+[info]    Generating static pages (3/7) 
+
+[info] TypeError: Cannot read properties of undefined (reading 'token')
+    at n (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\server\app\page.js:1:5233)
+    at nj (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46251)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47571)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nD (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:66680)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64853)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:58560)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546) {
+  digest: '2318515655'
+}
+
+Error occurred prerendering page "/games". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of undefined (reading 'token')
+    at n (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\server\app\page.js:1:5233)
+    at nj (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46251)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47571)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nD (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:66680)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64853)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:58560)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+
+[info]    Generating static pages (5/7) 
+
+[info]  ✓ Generating static pages (7/7)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/games/page: /games
+
+[debug] [2024-07-09T19:05:16.772Z] Error: ENOENT: no such file or directory, open 'C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-07-09T19:16:59.257Z] ----------------------------------------------------------------------
+[debug] [2024-07-09T19:16:59.276Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\MAESOFT\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-09T19:16:59.277Z] CLI Version:   13.13.0
+[debug] [2024-07-09T19:16:59.277Z] Platform:      win32
+[debug] [2024-07-09T19:16:59.277Z] Node Version:  v21.6.2
+[debug] [2024-07-09T19:16:59.280Z] Time:          Tue Jul 09 2024 16:16:59 GMT-0300 (hora estándar de Argentina)
+[debug] [2024-07-09T19:16:59.281Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-09T19:16:59.485Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-09T19:16:59.486Z] > authorizing via signed-in user (matias_eguia@hotmail.com)
+[debug] [2024-07-09T19:16:59.487Z] [iam] checking project player-review for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-09T19:16:59.491Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions [none]
+[debug] [2024-07-09T19:16:59.491Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions x-goog-quota-user=projects/player-review
+[debug] [2024-07-09T19:16:59.491Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T19:17:00.696Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions 200
+[debug] [2024-07-09T19:17:00.697Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/player-review:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-09T19:17:00.698Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/player-review [none]
+[debug] [2024-07-09T19:17:01.169Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/player-review 200
+[debug] [2024-07-09T19:17:01.169Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/player-review {"projectId":"player-review","projectNumber":"538337990706","displayName":"player-review","name":"projects/player-review","resources":{"hostingSite":"player-review"},"state":"ACTIVE","etag":"1_9c86f273-e3d9-4fad-82a9-df92ccd323d2"}
+[debug] [2024-07-09T19:17:10.652Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites pageToken=&pageSize=10
+[debug] [2024-07-09T19:17:12.246Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites 200
+[debug] [2024-07-09T19:17:12.247Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites {"sites":[{"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}]}
+[debug] [2024-07-09T19:17:12.255Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config [none]
+[debug] [2024-07-09T19:17:13.402Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config 200
+[debug] [2024-07-09T19:17:13.403Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:538337990706:web:6fd32ff4627cc6a8a5c42b/config {"projectId":"player-review","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","storageBucket":"player-review.appspot.com","apiKey":"AIzaSyBZGKn4LQ9oC5uzW3yxQ3nY0QuKp0QJTsM","authDomain":"player-review.firebaseapp.com","messagingSenderId":"538337990706"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-07-09T19:17:39.643Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review [none]
+[debug] [2024-07-09T19:17:40.961Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review 200
+[debug] [2024-07-09T19:17:40.961Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/player-review/sites/player-review {"name":"projects/player-review/sites/player-review","defaultUrl":"https://player-review.web.app","appId":"1:538337990706:web:6fd32ff4627cc6a8a5c42b","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.3
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info] 
+./app/components/UserPanel.jsx
+28:4  Warning: React Hook useEffect has a missing dependency: 'userData.id'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/7) ...
+
+[info] TypeError: Cannot read properties of undefined (reading 'token')
+    at n (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\server\app\page.js:1:5293)
+    at nj (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46251)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47571)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nD (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:66680)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64853)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:58560)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546) {
+  digest: '1733198605'
+}
+
+Error occurred prerendering page "/games". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of undefined (reading 'token')
+    at n (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\server\app\page.js:1:5293)
+    at nj (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:46251)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:47571)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nD (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:66680)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64853)
+    at nB (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:67538)
+    at nM (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:58560)
+    at nN (C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:64546)
+
+[info]    Generating static pages (1/7) 
+
+[info]    Generating static pages (3/7) 
+
+[info]    Generating static pages (5/7) 
+
+[info]  ✓ Generating static pages (7/7)
+
+[info] 
+
+[info] > Export encountered errors on following paths:
+	/games/page: /games
+
+[debug] [2024-07-09T19:18:26.504Z] Error: ENOENT: no such file or directory, open 'C:\Users\MAESOFT\Desktop\FullStack\Next\gamesReview\.next\export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.

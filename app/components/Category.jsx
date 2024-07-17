@@ -1,23 +1,29 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import GamesTags from './GamesTags';
+import { useUser } from '../context/UserContext';
 
 const Category = ({ onTagChange, selectedTag }) => {
     const [categorias, setCategorias] = useState([]); 
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
     const baseUrl = 'http://localhost:3000/category/'; 
+    const { userData } = useUser() || {};
 
     useEffect(() => {
         const obtenerCategorias = async () => {
+            setCargando(true);
             try {
-                const response = await fetch(baseUrl);
+                const headers = {};
+                if (userData?.token) {
+                    headers['Authorization'] = `Bearer ${userData.token}`;
+                }
+                const response = await fetch(baseUrl, { headers });
                 if (!response.ok) {
                     throw new Error('Error al obtener las categorías');
                 }
                 const data = await response.json();
                 setCategorias(data);
-               
             } catch (error) {
                 console.error('Error al obtener las categorías:', error);
                 setError(error.message);
@@ -27,13 +33,13 @@ const Category = ({ onTagChange, selectedTag }) => {
         };
 
         obtenerCategorias();
-    }, []);
+    }, [userData?.token]);
 
     const manejarClickTag = (nuevoTag) => {
         onTagChange(nuevoTag);
         console.log(`Tag clicked: ${nuevoTag}`);
     };
- 
+
     return (
         <>
             <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
@@ -52,7 +58,7 @@ const Category = ({ onTagChange, selectedTag }) => {
                 {categorias.map(categoria => (
                     <GamesTags
                         key={categoria.id}
-                        onClick={() => manejarClickTag(categoria.name)}//categoria?.videoGame(la asociacion como esta en nest)
+                        onClick={() => manejarClickTag(categoria.name)}
                         name={categoria.name}
                         isSelected={selectedTag === categoria.name}
                     />

@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import GamesCard from './GamesCard';
@@ -12,38 +11,42 @@ export const GamesSection = () => {
     const [selectedGame, setSelectedGame] = useState(null);
     const { userData } = useUser() || {};
     const [games, setGames] = useState([]);
-    const [loading, setLoading] = useState(true); // Nuevo estado para el loading
+    const [loading, setLoading] = useState(true);
     const [displayedGames, setDisplayedGames] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true); // Inicia el loading
+            setLoading(true);
             try {
-                let url = 'http://localhost:3000/video_game/';
+                let url = 'http://localhost:3000/video_games/';
                 if (tag !== 'Todos') {
                     url += `category/${tag}`;
                 }
-                const response = await fetch(url);
+                const headers = {};
+                if (userData?.token) {
+                    headers['Authorization'] = `Bearer ${userData.token}`;
+                }
+                const response = await fetch(url, { headers });
                 if (!response.ok) {
                     throw new Error('Error al obtener los juegos');
                 }
                 const data = await response.json();
                 setGames(data);
-                setDisplayedGames(expanded ? data : data.slice(0, 6)); // Actualiza displayedGames según expanded
+                setDisplayedGames(expanded ? data : data.slice(0, 6));
             } catch (error) {
                 console.error('Error al obtener los juegos:', error);
-                setGames([]); // En caso de error, asegura que games sea un array vacío
+                setGames([]);
             } finally {
-                setLoading(false); // Termina el loading
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, [tag, expanded]);
+    }, [tag, expanded, userData?.token]);
 
     const handleTagChange = (newTag) => {
         setTag(newTag);
-        setSelectedGame(null); // Limpiar el juego seleccionado al cambiar de categoría
+        setSelectedGame(null);
     };
 
     const handleCloseModal = () => {
@@ -51,8 +54,8 @@ export const GamesSection = () => {
     };
 
     const handleToggleExpand = () => {
-        setExpanded((prevExpanded) => !prevExpanded); // Usa prevExpanded para obtener el estado anterior de expanded
-        setDisplayedGames((prevGames) => (!expanded ? prevGames.slice(0, 6) : games)); // Actualiza displayedGames según expanded
+        setExpanded((prevExpanded) => !prevExpanded);
+        setDisplayedGames((prevGames) => (!expanded ? prevGames.slice(0, 6) : games));
     };
 
     return (
@@ -93,7 +96,7 @@ export const GamesSection = () => {
                 />
             )}
 
-            {userData.name && games.length > 6 && !loading && (
+            {userData?.name && games.length > 6 && !loading && (
                 <div className='flex justify-center mt-10'>
                     <button
                         className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
