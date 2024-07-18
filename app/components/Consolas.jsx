@@ -21,10 +21,8 @@ export const Consolas = () => {
                 }
                 const data = await response.json();
                 setConsolas(data); // Actualizar el estado con los datos obtenidos
-                setError(null)
             } catch (error) {
                 console.error('Error al obtener las consolas:', error);
-                setError(error.message); // Guardar el mensaje de error
             }
         };
 
@@ -62,7 +60,6 @@ export const Consolas = () => {
                     </div>
                 </div>
             }
-            {userData.name && error && <div className='text-red-500 mt-4'>{error}</div>} {/* Mostrar el error si existe */}
         </section>
     );
 };
