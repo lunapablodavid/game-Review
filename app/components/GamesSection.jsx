@@ -66,9 +66,11 @@ export const GamesSection = () => {
                     <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                         Juegos
                     </h2>
-                    
+
                     {loading ? (
-                        <div className='text-center text-white'>Cargando juegos...</div>
+                        <div className="flex items-center justify-center min-h-screen">
+                            <div className="w-16 h-16 border-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+                        </div>
                     ) : games.length === 0 ? (
                         <div className='text-center text-white'>No hay juegos disponibles en esta categoría.</div>
                     ) : (
@@ -87,7 +89,7 @@ export const GamesSection = () => {
                             </div>
                         </>
                     )}
-                    
+
                     {selectedGame && (
                         <GamesInfo
                             id={selectedGame.id}

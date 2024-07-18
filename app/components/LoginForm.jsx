@@ -75,6 +75,14 @@ const LoginForm = () => {
   return (
     <div className="mx-4 sm:mx-auto sm:w-2/3 md:w-1/2 lg:w-1/3 p-4 bg-black bg-opacity-30 rounded-lg shadow-md">
       <h2 className="text-2xl text-gray-500 font-semibold mb-4">Iniciar sesión</h2>
+      {msgError && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <p className="text-red-600 font-semibold">{msgError}</p>
+            <button onClick={closeModal} className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">Cerrar</button>
+          </div>
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="username" className="block text-gray-500 font-semibold mb-2">Usuario</label>

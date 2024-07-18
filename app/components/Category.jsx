@@ -4,7 +4,7 @@ import GamesTags from './GamesTags';
 import { useUser } from '../context/UserContext';
 
 const Category = ({ onTagChange, selectedTag }) => {
-    const [categorias, setCategorias] = useState([]); 
+    const [categorias, setCategorias] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
     const baseUrl = 'http://localhost:3000/category/';
@@ -43,13 +43,16 @@ const Category = ({ onTagChange, selectedTag }) => {
 
     return (
         <>
-            {userData.name && 
+            {userData.name &&
                 <>
                     <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                         Categorías
                     </h2>
                     <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
-                        {cargando && <div>Cargando categorías...</div>}
+                        {cargando &&
+                            <div className="flex items-center justify-center min-h-screen">
+                                <div className="w-16 h-16 border-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+                            </div>}
                         {!cargando && !error && categorias.length === 0 && <div>No hay categorías disponibles</div>}
                         <GamesTags
                             key="todos"

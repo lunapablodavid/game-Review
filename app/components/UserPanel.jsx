@@ -62,7 +62,15 @@ const UserPanel = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-gray-900 ">
-      <div className="mx-4 sm:mx-auto sm:w-2/3 p-6 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg text-white">
+      <div className="relative mx-4 sm:mx-auto sm:w-2/3 p-6 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg text-white">
+        <button
+          className="absolute top-2 right-2 text-gray-300 hover:text-white focus:outline-none"
+          onClick={() => window.location.href = '/'} // Aquí puedes cambiar la acción de cerrar el panel
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
         <h2 className="text-3xl font-bold mb-6 text-center">Panel de Usuario</h2>
         <div className="mb-6 text-center">
           <Image
@@ -84,10 +92,10 @@ const UserPanel = () => {
           <button className="bg-green-600 text-white py-2 rounded-md hover:bg-green-500 focus:outline-none focus:bg-green-700 transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
             Cambiar Contraseña
           </button>
-          <button onClick={() => eliminarCuenta()} className="bg-red-600 text-white py-2 rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700 transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
+          <button onClick={eliminarCuenta} className="bg-red-600 text-white py-2 rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-700 transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
             Eliminar Cuenta
           </button>
-          <button onClick={() => cerrarSesion()} className="bg-gray-600 text-white py-2 rounded-md hover:bg-gray-500 focus:outline-none focus:bg-gray-700 transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
+          <button onClick={cerrarSesion} className="bg-gray-600 text-white py-2 rounded-md hover:bg-gray-500 focus:outline-none focus:bg-gray-700 transition-transform transform hover:-translate-y-1 hover:scale-105 duration-300">
             Cerrar Sesión
           </button>
         </div>
