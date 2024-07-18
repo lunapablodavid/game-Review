@@ -7,7 +7,7 @@ const Category = ({ onTagChange, selectedTag }) => {
     const [categorias, setCategorias] = useState([]); 
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const baseUrl = 'http://localhost:3000/category/'; 
+    const baseUrl = 'http://localhost:3000/category/';
     const { userData } = useUser() || {};
 
     useEffect(() => {
@@ -24,6 +24,7 @@ const Category = ({ onTagChange, selectedTag }) => {
                 }
                 const data = await response.json();
                 setCategorias(data);
+                setError(null); // Reiniciar el estado de error si la solicitud tiene éxito
             } catch (error) {
                 console.error('Error al obtener las categorías:', error);
                 setError(error.message);
@@ -33,7 +34,7 @@ const Category = ({ onTagChange, selectedTag }) => {
         };
 
         obtenerCategorias();
-    }, [userData?.token]);
+    }, [baseUrl, userData?.token]);
 
     const manejarClickTag = (nuevoTag) => {
         onTagChange(nuevoTag);

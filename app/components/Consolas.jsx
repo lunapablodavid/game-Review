@@ -2,43 +2,48 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
-import { useUser } from '../context/UserContext'; // Ajusta la ruta según tu estructura de archivos
+import { useUser } from '../context/UserContext';
 
 export const Consolas = () => {
     const [tab, setTab] = useState("portatiles");
     const [consolas, setConsolas] = useState([]);
-    const { userData } = useUser(); // Cambiado de SessionContext a UserContext
+    const [error, setError] = useState(null); // Estado para el error
+    const { userData } = useUser(); 
 
     useEffect(() => {
         const fetchConsolas = async () => {
             try {
-                const response = await fetch('http://localhost:3000/console');
+                const headers = {};
+                if (userData?.token) {
+                    headers['Authorization'] = `Bearer ${userData.token}`;
+                }
+                const response = await fetch('http://localhost:3000/console', { headers });
                 if (!response.ok) {
                     throw new Error('Error al obtener las consolas');
                 }
                 const data = await response.json();
-                setConsolas(data);
+                setConsolas(data); // Actualizar el estado con los datos obtenidos
             } catch (error) {
                 console.error('Error al obtener las consolas:', error);
+                setError(error.message); // Guardar el mensaje de error
             }
         };
 
         fetchConsolas();
-    }, []);
+    }, [userData?.token]);
 
     const handleTabChange = (id) => {
         setTab(id);
     };
 
     const renderTabContent = () => {
-        const selectedTab = consolas.find((c) => c.id === tab);
-        if (!selectedTab) {
-            return null; // Puedes manejar aquí cómo mostrar si no hay datos para la pestaña seleccionada
+        if (consolas.length === 0) {
+            return <div>No hay consolas disponibles.</div>; // Mensaje de error si no hay consolas
         }
 
         return (
             <ul>
-                {selectedTab.consoles.map((console) => (
+                {consolas.map((console) => (
                     <li key={console.id}>{console.name}</li>
                 ))}
             </ul>
@@ -47,7 +52,7 @@ export const Consolas = () => {
 
     return (
         <section className='text-white'>
-            {userData.name && (
+            {userData.name ? (
                 <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'>
                     <Image src='/images/consolas.jpg' alt='imagen consolas' width={500} height={500} />
                     <div>
@@ -71,7 +76,10 @@ export const Consolas = () => {
                         <div className='mt-8'>{renderTabContent()}</div>
                     </div>
                 </div>
+            ) : (
+                <div>Por favor, inicia sesión para ver las consolas.</div>
             )}
+            {error && <div className='text-red-500 mt-4'>{error}</div>} {/* Mostrar el error si existe */}
         </section>
     );
 };
