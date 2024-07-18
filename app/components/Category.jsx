@@ -43,28 +43,31 @@ const Category = ({ onTagChange, selectedTag }) => {
 
     return (
         <>
-            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
-                Categorías
-            </h2>
-            <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
-                {cargando && <div>Cargando categorías...</div>}
-                {error && <div>Error al obtener las categorías: {error}</div>}
-                {!cargando && !error && categorias.length === 0 && <div>No hay categorías disponibles</div>}
-                <GamesTags
-                    key="todos"
-                    onClick={() => manejarClickTag('Todos')}
-                    name="Todos"
-                    isSelected={selectedTag === 'Todos'}
-                />
-                {categorias.map(categoria => (
-                    <GamesTags
-                        key={categoria.id}
-                        onClick={() => manejarClickTag(categoria.name)}
-                        name={categoria.name}
-                        isSelected={selectedTag === categoria.name}
-                    />
-                ))}
-            </div>
+            {userData.name && 
+                <>
+                    <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
+                        Categorías
+                    </h2>
+                    <div className='text-white justify-center items-center grid md:grid-cols-5 gap-5 md:gap-6 p-4 mb-8'>
+                        {cargando && <div>Cargando categorías...</div>}
+                        {!cargando && !error && categorias.length === 0 && <div>No hay categorías disponibles</div>}
+                        <GamesTags
+                            key="todos"
+                            onClick={() => manejarClickTag('Todos')}
+                            name="Todos"
+                            isSelected={selectedTag === 'Todos'}
+                        />
+                        {categorias.map(categoria => (
+                            <GamesTags
+                                key={categoria.id}
+                                onClick={() => manejarClickTag(categoria.name)}
+                                name={categoria.name}
+                                isSelected={selectedTag === categoria.name}
+                            />
+                        ))}
+                    </div>
+                </>
+            }
         </>
     );
 };

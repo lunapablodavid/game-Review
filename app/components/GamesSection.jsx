@@ -60,51 +60,55 @@ export const GamesSection = () => {
 
     return (
         <>
-            <Category onTagChange={handleTagChange} selectedTag={tag} />
-            <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
-                Juegos
-            </h2>
-
-            {loading ? (
-                <div className='text-center text-white'>Cargando juegos...</div>
-            ) : games.length === 0 ? (
-                <div className='text-center text-white'>No hay juegos disponibles en esta categoría.</div>
-            ) : (
+            {userData.name && (
                 <>
-                    <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
-                        {displayedGames.map((game) => (
-                            <GamesCard
-                                key={game.id}
-                                title={game.name}
-                                description={game.description}
-                                imgUrl={game.images}
-                                gameUrl={game.company?.siteUrl}
-                                onEyeClick={() => setSelectedGame(game)}
-                            />
-                        ))}
-                    </div>
+                    <Category onTagChange={handleTagChange} selectedTag={tag} />
+                    <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
+                        Juegos
+                    </h2>
+                    
+                    {loading ? (
+                        <div className='text-center text-white'>Cargando juegos...</div>
+                    ) : games.length === 0 ? (
+                        <div className='text-center text-white'>No hay juegos disponibles en esta categoría.</div>
+                    ) : (
+                        <>
+                            <div className='grid md:grid-cols-3 gap-8 md:gap-12'>
+                                {displayedGames.map((game) => (
+                                    <GamesCard
+                                        key={game.id}
+                                        title={game.name}
+                                        description={game.description}
+                                        imgUrl={game.images}
+                                        gameUrl={game.company?.siteUrl}
+                                        onEyeClick={() => setSelectedGame(game)}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}
+                    
+                    {selectedGame && (
+                        <GamesInfo
+                            id={selectedGame.id}
+                            title={selectedGame.name}
+                            description={selectedGame.description}
+                            imgUrl={selectedGame.images}
+                            onClose={handleCloseModal}
+                        />
+                    )}
+
+                    {userData?.name && games.length > 6 && !loading && (
+                        <div className='flex justify-center mt-10'>
+                            <button
+                                className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
+                                onClick={handleToggleExpand}
+                            >
+                                {expanded ? 'Ver menos' : 'Ver más'}
+                            </button>
+                        </div>
+                    )}
                 </>
-            )}
-
-            {selectedGame && (
-                <GamesInfo
-                    id={selectedGame.id}
-                    title={selectedGame.name}
-                    description={selectedGame.description}
-                    imgUrl={selectedGame.images}
-                    onClose={handleCloseModal}
-                />
-            )}
-
-            {userData?.name && games.length > 6 && !loading && (
-                <div className='flex justify-center mt-10'>
-                    <button
-                        className='px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-orange-300 border hover:border-pink-700 text-white'
-                        onClick={handleToggleExpand}
-                    >
-                        {expanded ? 'Ver menos' : 'Ver más'}
-                    </button>
-                </div>
             )}
         </>
     );

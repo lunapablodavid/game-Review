@@ -1,11 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import TabButton from './TabButton';
 import { useUser } from '../context/UserContext';
 
 export const Consolas = () => {
-    const [tab, setTab] = useState("portatiles");
     const [consolas, setConsolas] = useState([]);
     const [error, setError] = useState(null); // Estado para el error
     const { userData } = useUser(); 
@@ -23,6 +21,7 @@ export const Consolas = () => {
                 }
                 const data = await response.json();
                 setConsolas(data); // Actualizar el estado con los datos obtenidos
+                setError(null)
             } catch (error) {
                 console.error('Error al obtener las consolas:', error);
                 setError(error.message); // Guardar el mensaje de error
@@ -32,9 +31,6 @@ export const Consolas = () => {
         fetchConsolas();
     }, [userData?.token]);
 
-    const handleTabChange = (id) => {
-        setTab(id);
-    };
 
     const renderTabContent = () => {
         if (consolas.length === 0) {
@@ -44,7 +40,7 @@ export const Consolas = () => {
         return (
             <ul>
                 {consolas.map((console) => (
-                    <li key={console.id}>{console.name}</li>
+                    <button className='text-[#adb7be] border-slate-600 hover:border-white hover:text-white hover:bg-orange-500 rounded-full border-2 px-6 py-3 sm:text-sm cursor-pointer' key={console.id}>{console.name}</button>
                 ))}
             </ul>
         );
@@ -52,7 +48,7 @@ export const Consolas = () => {
 
     return (
         <section className='text-white'>
-            {userData.name ? (
+            {userData.name &&
                 <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16'>
                     <Image src='/images/consolas.jpg' alt='imagen consolas' width={500} height={500} />
                     <div>
@@ -62,24 +58,11 @@ export const Consolas = () => {
                             En nuestro sitio, hemos reunido una impresionante colección de consolas de videojuegos para satisfacer a todos los jugadores,
                             desde los aficionados hasta los más dedicados. Aquí te presentamos un recorrido por todas las consolas de videojuegos que puedes encontrar en nuestro sitio.
                         </p>
-                        <div className='flex flex-row mt-8'>
-                            <TabButton selectTab={() => handleTabChange("portatiles")} active={tab === "portatiles"}>
-                                Portátiles
-                            </TabButton>
-                            <TabButton selectTab={() => handleTabChange("Sobremesa")} active={tab === "Sobremesa"}>
-                                Sobremesa
-                            </TabButton>
-                            <TabButton selectTab={() => handleTabChange("PC")} active={tab === "PC"}>
-                                PC
-                            </TabButton>
-                        </div>
                         <div className='mt-8'>{renderTabContent()}</div>
                     </div>
                 </div>
-            ) : (
-                <div>Por favor, inicia sesión para ver las consolas.</div>
-            )}
-            {error && <div className='text-red-500 mt-4'>{error}</div>} {/* Mostrar el error si existe */}
+            }
+            {userData.name && error && <div className='text-red-500 mt-4'>{error}</div>} {/* Mostrar el error si existe */}
         </section>
     );
 };
