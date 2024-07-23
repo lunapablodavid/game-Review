@@ -13,7 +13,7 @@ export const GamesSection = () => {
     const [games, setGames] = useState([]);
     const [loading, setLoading] = useState(true);
     const [displayedGames, setDisplayedGames] = useState([]);
-
+    const [searchText, setSearchText] = useState('');
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -31,8 +31,14 @@ export const GamesSection = () => {
                     throw new Error('Error al obtener los juegos');
                 }
                 const data = await response.json();
-                setGames(data);
-                setDisplayedGames(expanded ? data : data.slice(0, 6));
+                
+                // Filtrar juegos por texto de búsqueda
+                const filteredGames = data.filter(game =>
+                    game.name.toLowerCase().includes(searchText.toLowerCase())
+                );
+    
+                setGames(filteredGames);
+                setDisplayedGames(expanded ? filteredGames : filteredGames.slice(0, 6));
             } catch (error) {
                 console.error('Error al obtener los juegos:', error);
                 setGames([]);
@@ -40,9 +46,9 @@ export const GamesSection = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchData();
-    }, [tag, expanded, userData?.token]);
+    }, [tag, expanded, userData?.token, searchText]);
 
     const handleTagChange = (newTag) => {
         setTag(newTag);
@@ -66,7 +72,16 @@ export const GamesSection = () => {
                     <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8'>
                         Juegos
                     </h2>
-
+  {/* Buscador */}
+  <div className="flex justify-center mb-8">
+                    <input
+                        type="text"
+                        className="px-4 py-2 rounded-full border border-gray-300 text-black"
+                        placeholder="Buscar juegos..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+                </div> 
                     {loading ? (
                         <div className="flex items-center justify-center min-h-screen">
                             <div className="w-16 h-16 border-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
@@ -96,6 +111,7 @@ export const GamesSection = () => {
                             title={selectedGame.name}
                             description={selectedGame.description}
                             imgUrl={selectedGame.images}
+                            qualifications={selectedGame.qualification}
                             onClose={handleCloseModal}
                         />
                     )}
